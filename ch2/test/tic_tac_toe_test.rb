@@ -119,15 +119,15 @@ class TicTacToeTest < Minitest::Test
   #         - 置き場所がある
   #         以下の条件時にfalseが返却される
   #         - 置き場所がない
-  def test_exists_empty_square
+  def test_has_empty_square
     board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
-    assert exists_empty_square(board)
+    assert has_empty_square(board)
 
     board = [[1, 1, 2], [2, 0, 1], [1, 2, 1]]
-    assert exists_empty_square(board)
+    assert has_empty_square(board)
 
     board = [[1, 1, 2], [2, 2, 1], [1, 2, 1]]
-    assert_equal false, exists_empty_square(board)
+    assert_equal false, has_empty_square(board)
   end 
 
   # 概要:  ゲームの継続条件を担保する
