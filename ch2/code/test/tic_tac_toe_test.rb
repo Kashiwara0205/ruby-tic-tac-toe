@@ -1,5 +1,4 @@
 require "minitest/autorun"
-require "stringio"
 require "../tic_tac_toe/tic_tac_toe"
 
 class TicTacToeTest < Minitest::Test
