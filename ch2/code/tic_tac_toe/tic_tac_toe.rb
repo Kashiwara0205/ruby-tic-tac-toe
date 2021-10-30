@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 # 説明: ゲーム板の状態をコンソールに出力する
 # 引数: board: ゲーム板, 3 x 3の二次元配列
 # 戻り値: なし
-def put_board board
+def put_board(board)
   puts ""
   board.each do |row|
     row.each do |e|
@@ -19,8 +21,7 @@ end
 #      board: ゲーム板, 3 x 3の二次元配列
 # 戻り値: 勝利している場合 => true
 #       それ以外 => false
-def win? player, board
-
+def win?(player, board)
   # 横の判定
   return true if player == board[0][0] && player == board[0][1] && player == board[0][2]
   return true if player == board[1][0] && player == board[1][1] && player == board[1][2]
@@ -35,7 +36,7 @@ def win? player, board
   return true if player == board[0][0] && player == board[1][1] && player == board[2][2]
   return true if player == board[0][2] && player == board[1][1] && player == board[2][0]
 
-  return false
+  false
 end
 
 # 説明: ゲームの敗北判定
@@ -43,17 +44,17 @@ end
 #      board: ゲーム板, 3 x 3の二次元配列
 # 戻り値: 敗北している場合 => true
 #       それ以外 => false
-def lose? player, board
+def lose?(player, board)
   opponent = get_opponent_player(player)
-  return win?(opponent, board)
+  win?(opponent, board)
 end
 
 # 説明: 対戦中の相手プレイヤーを返却する
 # 引数: player: プレイヤーを表す。1 or 2の数値
 # 戻り値: 1の時 => 2
-#        2の時 => 1
-def get_opponent_player player
-  return player == 1 ? 2 : 1
+#         2の時 => 1
+def get_opponent_player(player)
+  1 == player ? 2 : 1
 end
 
 # 説明: コマを配置する行と列の値をコンソールから受け取り返却する
@@ -65,7 +66,7 @@ def gets_position
 
   print "列を入力してください:"
   col = gets
-  return row.to_i, col.to_i
+  [row.to_i, col.to_i]
 end
 
 # 説明: ゲーム板にコマを配置する
@@ -74,7 +75,7 @@ end
 #       row: 更新する行番号
 #       col: 更新する列番号
 # 戻り値: なし
-def place_piece board, piece, row, col
+def place_piece(board, piece, row, col)
   board[row][col] = piece
 end
 
@@ -82,8 +83,8 @@ end
 # 引数: board: ゲーム板, 3 x 3の二次元配列
 # 戻り値: コマを配置する場所がある => true
 #         コマを配置する場所がない => false
-def has_empty_square? board
-  return board.any?{|row| row.any?{|a| 0 == a} } 
+def exists_empty_square(board)
+  board.any? { |row| row.any? { |a| 0 == a } }
 end
 
 # 説明: ゲームが続いているかどうかを返却する
@@ -91,22 +92,22 @@ end
 #       board: ゲーム板, 3 x 3の二次元配列
 # 戻り値: ゲームが続いている場合 => true
 #        ゲームが終わった場合 => false
-def continue? player, board
+def continue?(player, board)
   return false if win?(player, board)
   return false if lose?(player, board)
-  return false if !has_empty_square?(board)
+  return false if !exists_empty_square(board)
 
-  return true
+  true
 end
 
 # 説明: ゲームの結果をコンソールに出力する
 # 引数: board: ゲーム板, 3 x 3の二次元配列
 # 戻り値: なし
-def put_result board
+def put_result(board)
   if win?(1, board)
     puts "Player1が勝利しました!"
   elsif win?(2, board)
-    puts "Player2が勝利しました!" 
+    puts "Player2が勝利しました!"
   else
     puts "引き分けです!"
   end
@@ -121,7 +122,7 @@ def start
   board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 
   while continue?(player, board)
-    row, col = gets_position()
+    row, col = gets_position
 
     place_piece(board, player, row, col)
 
