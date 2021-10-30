@@ -2,6 +2,7 @@
 # 引数: board: ゲーム板, 3 x 3の二次元配列
 # 戻り値: なし
 def put_board board
+  puts ""
   board.each do |row|
     row.each do |e|
       print " N " if 0 == e
@@ -10,6 +11,7 @@ def put_board board
     end
     puts ""
   end
+  puts ""
 end
 
 # 説明: ゲームの勝利判定
@@ -123,9 +125,7 @@ def start
 
     place_piece(board, player, row, col)
 
-    puts ""
     put_board(board)
-    puts ""
 
     player = get_opponent_player(player)
   end

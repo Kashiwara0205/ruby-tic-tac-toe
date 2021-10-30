@@ -2,6 +2,7 @@
 # 引数: board: ゲーム板, 3 x 3の二次元配列
 # 戻り値: なし
 def put_board board
+  puts ""
   board.each do |row|
     row.each do |e|
       print " N " if 0 == e
@@ -10,6 +11,7 @@ def put_board board
     end
     puts ""
   end
+  puts ""
 end
 
 # 説明: ゲームの勝利判定
@@ -97,6 +99,20 @@ def continue? player, board
   return true
 end
 
+# 説明: ゲームの結果をコンソールに出力する
+# 引数: board: ゲーム板, 3 x 3の二次元配列
+# 戻り値: なし
+def put_result board
+    if win?(1, board)
+      puts "Player1が勝利しました!"
+    elsif win?(2, board)
+      puts "Player2が勝利しました!" 
+    else
+      puts "引き分けです!"
+    end
+  end
+  
+
 player = 1
 board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 
@@ -105,17 +121,9 @@ while continue?(player, board)
 
   place_piece(board, player, row, col)
 
-  puts ""
   put_board(board)
-  puts ""
 
   player = get_opponent_player(player)
 end
 
-if win?(1, board)
-  puts "Player1が勝利しました!" 
-elsif win?(2, board)
-  puts "Player2が勝利しました!" 
-else
-  puts "引き分けです!"
-end
+put_result(board)
