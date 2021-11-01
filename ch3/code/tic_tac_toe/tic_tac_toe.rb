@@ -71,12 +71,12 @@ end
 
 # 説明: ゲーム板にコマを配置する
 # 引数: board: ゲーム板, 3 x 3の二次元配列
-#       piece: 配置するコマ（1 or 2）
+#       player: プレイヤーを表す。1 or 2の数値
 #       row: 更新する行番号
 #       col: 更新する列番号
 # 戻り値: なし
-def place_piece(board, piece, row, col)
-  board[row][col] = piece
+def place_piece(board, player, row, col)
+  board[row][col] = player
 end
 
 # 説明: コマを配置する場所があるかどうかを判定する
