@@ -18,9 +18,8 @@ class Game
   # 戻り値: ゲームが続いている場合 => true
   #        ゲームが終わった場合 => false
   def continue?
-
-    return false if win?( @current_player)
-    return false if lose?( @current_player)
+    return false if win?(@current_player)
+    return false if lose?(@current_player)
     return false if !exists_empty_square
 
     true
@@ -49,7 +48,7 @@ class Game
   # 説明: ゲーム板の状態をコンソールに出力する
   # 引数: なし
   # 戻り値: なし
-  def put_board()
+  def put_board
     puts ""
     @board.each do |row|
       row.each do |e|
@@ -62,8 +61,8 @@ class Game
     puts ""
   end
 
-  def execute_player_turn()
-    row, col =  @current_player.select_position
+  def execute_player_turn
+    row, col = @current_player.select_position
     place_piece(row, col)
   end
 
@@ -82,7 +81,7 @@ class Game
   # 戻り値: PLAYER_1の時 => PLAYER_1
   #         PLAYER_2の時 => PLAYER_2
   def opponent_player(player)
-    @player1.object_id == player.object_id ? @player2 : @player1
+    @player1.equal?(player) ? @player2 : @player1
   end
 
   # 概要: コマを配置する場所があるかどうかを判定する
