@@ -3,16 +3,4 @@ require_relative "../tic_tac_toe/tic_tac_toe"
 
 class TicTacToeTest < Minitest::Test
 
-  # 概要:  コマを置く場所を取得した時に整数に変換されることを担保する
-  # 期待値: 整数の1がrowとcolにそれぞれ返却されること
-  def test_gets_position
-    stub(:print, nil) do 
-      stub(:gets, "1") do 
-        row, col = gets_position()
-        assert_equal 1, row
-        assert_equal 1, col
-      end
-    end
-  end
-
 end

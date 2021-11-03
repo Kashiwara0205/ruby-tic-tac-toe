@@ -7,33 +7,47 @@ class GameTest < Minitest::Test
   # 期待値: PLAYER_1ならPLAYER_2に
   #         PLAYER_2ならPLAYER_1に、それぞれ更新がかかる
   def test_place_piece
-    game = Game.new(player1: 1, player2: 2, board: [[0, 0, 0], [0, 0, 0], [0, 0, 0]])
+    player1 = MiniTest::Mock.new
+    player2 = MiniTest::Mock.new
 
-    assert_equal 1, game.instance_variable_get(:@current_player)
+    game = Game.new(player1: player1, player2: player2, board: [[0, 0, 0], [0, 0, 0], [0, 0, 0]])
+
+    assert_equal player1.object_id, game.instance_variable_get(:@current_player).object_id
 
     game.update_to_next_turn()
 
-    assert_equal 2, game.instance_variable_get(:@current_player)
+    assert_equal player2.object_id, game.instance_variable_get(:@current_player).object_id
 
     game.update_to_next_turn()
 
-    assert_equal 1, game.instance_variable_get(:@current_player)
+    assert_equal player1.object_id, game.instance_variable_get(:@current_player).object_id
   end
 
-  # 概要: コマの配置メソッドを担保する
-  # 期待値: 入力した値に応じてコマが配置されること
-  def test_place_piece
-    game = Game.new(player1: 1, player2: 2, board: [[0, 0, 0], [0, 0, 0], [0, 0, 0]])
+  # 概要: プレイヤーがコマを配置した時に、ボードが更新されることを担保する
+  # 期待値: gets_positionメソッドからの戻り値で、ボードが更新されること
+  def test_execute_player_turn
+    player1 = MiniTest::Mock.new
+    player1.expect(:gets_position, [0, 0])
+    player1.expect(:piece, 1)
 
-    game.place_piece(0, 0)
+    player2 = MiniTest::Mock.new
+    player2.expect(:gets_position, [1, 2])
+    player2.expect(:piece, 2)
+
+    game = Game.new(player1: player1, player2: player2, board: [[0, 0, 0], [0, 0, 0], [0, 0, 0]])
+
+    game.execute_player_turn()
     board = game.instance_variable_get(:@board)
     assert_equal 1, board[0][0]
 
     game.update_to_next_turn()
 
-    game.place_piece(1, 2)
+    game.execute_player_turn()
     board = game.instance_variable_get(:@board)
     assert_equal 2, board[1][2]
+
+    player1.verify
+    player2.verify
   end
 
   # 概要:  ゲームの継続条件を担保する
@@ -43,19 +57,68 @@ class GameTest < Minitest::Test
   #         - プレイヤーが敗北した
   #         - 引き分けになった
   def test_continue?
-    game = Game.new(player1: 1, player2: 2, board: [[0, 0, 0], [0, 0, 0], [0, 0, 0]])
+
+    # 継続可能
+    player1 = MiniTest::Mock.new
+    player1.expect(:piece, 1)
+    
+    player2 = MiniTest::Mock.new
+    player2.expect(:piece, 2)
+
+    game = Game.new(player1: player1, player2: player2, board: [[0, 0, 0], [0, 0, 0], [0, 0, 0]])
     assert game.continue?()
 
-    game = Game.new(player1: 1, player2: 2, board: [[1, 2, 0], [0, 0, 0], [0, 0, 0]])
+    player1.verify
+    player2.verify
+
+    # 継続可能
+    player1 = MiniTest::Mock.new
+    player1.expect(:piece, 1)
+
+    player2 = MiniTest::Mock.new
+    player2.expect(:piece, 2)
+
+    game = Game.new(player1: player1, player2: player2, board: [[1, 2, 0], [0, 0, 0], [0, 0, 0]])
     assert game.continue?()
 
-    game = Game.new(player1: 1, player2: 2, board: [[1, 1, 1], [0, 0, 0], [0, 0, 0]])
+    player1.verify
+    player2.verify
+
+    # 勝利した
+    player1 = MiniTest::Mock.new
+    player1.expect(:piece, 1)
+    
+    player2 = MiniTest::Mock.new
+
+    game = Game.new(player1: player1, player2: player2, board: [[1, 1, 1], [0, 0, 0], [0, 0, 0]])
     assert_equal false, game.continue?()
 
-    game = Game.new(player1: 1, player2: 2, board: [[2, 2, 2], [0, 0, 0], [0, 0, 0]])
+    player1.verify
+
+    # 敗北した
+    player1 = MiniTest::Mock.new
+    player1.expect(:piece, 1)
+    
+    player2 = MiniTest::Mock.new
+    player2.expect(:piece, 2)
+
+    game = Game.new(player1: player1, player2: player2, board: [[2, 2, 2], [0, 0, 0], [0, 0, 0]])
     assert_equal false, game.continue?()
 
-    game = Game.new(player1: 1, player2: 2, board: [[1, 1, 2], [2, 2, 1], [1, 2, 1]])
+    # 引き分けになった
+    player1.verify
+    player2.verify
+
+    player1 = MiniTest::Mock.new
+    player1.expect(:piece, 1)
+    
+    player2 = MiniTest::Mock.new
+    player2.expect(:piece, 2)
+
+    game = Game.new(player1: player1, player2: player2, board: [[1, 1, 2], [2, 2, 1], [1, 2, 1]])
     assert_equal false, game.continue?()
+
+    player1.verify
+    player2.verify
   end
 end
