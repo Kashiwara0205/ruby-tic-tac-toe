@@ -54,8 +54,8 @@ class Game
     @board.each do |row|
       row.each do |e|
         print " N " if EMPTY_SQUARE == e
-        print " o " if PLAYER_1 == e
-        print " x " if PLAYER_2 == e
+        print " o " if PLAYER1_PIECE == e
+        print " x " if PLAYER2_PIECE == e
       end
       puts ""
     end

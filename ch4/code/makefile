@@ -5,3 +5,6 @@ unit:
 
 rubocop:
 	rubocop tic_tac_toe
+
+run:
+	ruby main.rb

@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
+# Playerの打ち手を管理をする
 class Player
-   
+   attr_reader :piece
+
   def initialize piece:
-    @piece
+    @piece = piece
   end
 
   # 概要: コマを配置する行と列の値をコンソールから受け取り返却する

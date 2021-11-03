@@ -2,6 +2,7 @@ require_relative "./const"
 require_relative "./game"
 require_relative "./player"
 
+# ゲームクラスを作成する
 class GameFactory
   class << self 
     def create 
