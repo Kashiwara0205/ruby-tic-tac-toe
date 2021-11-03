@@ -63,7 +63,7 @@ class Game
   end
 
   def execute_player_turn()
-    row, col =  @current_player.gets_position
+    row, col =  @current_player.select_position
     place_piece(row, col)
   end
 

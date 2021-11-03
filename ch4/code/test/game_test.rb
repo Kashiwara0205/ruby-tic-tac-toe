@@ -24,14 +24,14 @@ class GameTest < Minitest::Test
   end
 
   # 概要: プレイヤーがコマを配置した時に、ボードが更新されることを担保する
-  # 期待値: gets_positionメソッドからの戻り値で、ボードが更新されること
+  # 期待値: select_positionメソッドからの戻り値で、ボードが更新されること
   def test_execute_player_turn
     player1 = MiniTest::Mock.new
-    player1.expect(:gets_position, [0, 0])
+    player1.expect(:select_position, [0, 0])
     player1.expect(:piece, 1)
 
     player2 = MiniTest::Mock.new
-    player2.expect(:gets_position, [1, 2])
+    player2.expect(:select_position, [1, 2])
     player2.expect(:piece, 2)
 
     game = Game.new(player1: player1, player2: player2, board: [[0, 0, 0], [0, 0, 0], [0, 0, 0]])
