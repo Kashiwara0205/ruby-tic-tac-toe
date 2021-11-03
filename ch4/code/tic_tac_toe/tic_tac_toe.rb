@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+PLAYER_1 = 1
+PLAYER_2 = 2
+EMPTY_SQUARE = 0
+
 # 説明: ゲーム板の状態をコンソールに出力する
 # 引数: board: ゲーム板, 3 x 3の二次元配列
 # 戻り値: なし
@@ -7,9 +11,9 @@ def put_board(board)
   puts ""
   board.each do |row|
     row.each do |e|
-      print " N " if 0 == e
-      print " o " if 1 == e
-      print " x " if 2 == e
+      print " N " if EMPTY_SQUARE == e
+      print " o " if PLAYER_1 == e
+      print " x " if PLAYER_2 == e
     end
     puts ""
   end
@@ -22,7 +26,6 @@ end
 # 戻り値: 勝利している場合 => true
 #       それ以外 => false
 def win?(player, board)
-
   # 横の判定
   return true if player == board[0][0] && player == board[0][1] && player == board[0][2]
   return true if player == board[1][0] && player == board[1][1] && player == board[1][2]
@@ -52,10 +55,10 @@ end
 
 # 説明: 対戦中の相手プレイヤーを返却する
 # 引数: player: プレイヤーを表す。1 or 2の数値
-# 戻り値: 1の時 => 2
-#         2の時 => 1
+# 戻り値: PLAYER_1の時 => PLAYER_1
+#         PLAYER_2の時 => PLAYER_2
 def get_opponent_player(player)
-  1 == player ? 2 : 1
+  PLAYER_1 == player ? PLAYER_2 : PLAYER_1
 end
 
 # 説明: コマを配置する行と列の値をコンソールから受け取り返却する
@@ -85,7 +88,7 @@ end
 # 戻り値: コマを配置する場所がある => true
 #         コマを配置する場所がない => false
 def exists_empty_square(board)
-  board.any? { |row| row.any? { |a| 0 == a } }
+  board.any? { |row| row.any? { |a| EMPTY_SQUARE == a } }
 end
 
 # 説明: ゲームが続いているかどうかを返却する
@@ -119,8 +122,12 @@ end
 # 引数: なし
 # 戻り値: なし
 def start
-  player = 1
-  board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+  player = PLAYER_1
+  board = [
+    [EMPTY_SQUARE, EMPTY_SQUARE, EMPTY_SQUARE],
+    [EMPTY_SQUARE, EMPTY_SQUARE, EMPTY_SQUARE],
+    [EMPTY_SQUARE, EMPTY_SQUARE, EMPTY_SQUARE]
+  ]
 
   while continue?(player, board)
     row, col = gets_position
