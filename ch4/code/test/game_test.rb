@@ -1,16 +1,23 @@
 require "minitest/autorun"
 require_relative "../tic_tac_toe/game"
-
+require_relative "../tic_tac_toe/board"
 class GameTest < Minitest::Test
 
   # 概要: ゲームターンが更新され現在のプレイヤーが変わっていることを確認
   # 期待値: PLAYER_1ならPLAYER_2に
-  #         PLAYER_2ならPLAYER_1に、それぞれ更新がかかる
-  def test_place_piece
+  #        PLAYER_2ならPLAYER_1に、それぞれ更新がかかる
+  def test_update_to_next_turn
     player1 = MiniTest::Mock.new
     player2 = MiniTest::Mock.new
 
-    game = Game.new(player1: player1, player2: player2, board: [[0, 0, 0], [0, 0, 0], [0, 0, 0]])
+    player1.expect(:equal?, true, [player1])
+    player1.expect(:equal?, false, [player2])
+
+    board = Board.new(
+      [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+    )
+
+    game = Game.new(player1: player1, player2: player2, board: board)
 
     assert_equal player1.object_id, game.instance_variable_get(:@current_player).object_id
 
@@ -27,27 +34,21 @@ class GameTest < Minitest::Test
   # 期待値: select_positionメソッドからの戻り値で、ボードが更新されること
   def test_execute_player_turn
     player1 = MiniTest::Mock.new
-    player1.expect(:select_position, [0, 0])
+    player2 = MiniTest::Mock.new
+
+    player1.expect(:select_position, [2, 1])
     player1.expect(:piece, 1)
 
-    player2 = MiniTest::Mock.new
-    player2.expect(:select_position, [1, 2])
-    player2.expect(:piece, 2)
+    board = Board.new(
+      [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+    )
 
-    game = Game.new(player1: player1, player2: player2, board: [[0, 0, 0], [0, 0, 0], [0, 0, 0]])
-
-    game.execute_player_turn()
-    board = game.instance_variable_get(:@board)
-    assert_equal 1, board[0][0]
-
-    game.update_to_next_turn()
+    game = Game.new(player1: player1, player2: player2, board: board)
 
     game.execute_player_turn()
-    board = game.instance_variable_get(:@board)
-    assert_equal 2, board[1][2]
+    assert_equal 1, board.board[2][1]
 
     player1.verify
-    player2.verify
   end
 
   # 概要:  ゲームの継続条件を担保する
@@ -61,24 +62,32 @@ class GameTest < Minitest::Test
     # 継続可能
     player1 = MiniTest::Mock.new
     player1.expect(:piece, 1)
-    
+    player1.expect(:equal?, true, [player1])
+
     player2 = MiniTest::Mock.new
     player2.expect(:piece, 2)
+    board = Board.new(
+      [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+    )
 
-    game = Game.new(player1: player1, player2: player2, board: [[0, 0, 0], [0, 0, 0], [0, 0, 0]])
+    game = Game.new(player1: player1, player2: player2, board: board)
     assert game.continue?()
 
     player1.verify
     player2.verify
-
+    
     # 継続可能
     player1 = MiniTest::Mock.new
     player1.expect(:piece, 1)
+    player1.expect(:equal?, true, [player1])
 
     player2 = MiniTest::Mock.new
     player2.expect(:piece, 2)
+    board = Board.new(
+      [[1, 2, 0], [0, 0, 0], [0, 0, 0]]
+    )
 
-    game = Game.new(player1: player1, player2: player2, board: [[1, 2, 0], [0, 0, 0], [0, 0, 0]])
+    game = Game.new(player1: player1, player2: player2, board: board)
     assert game.continue?()
 
     player1.verify
@@ -87,10 +96,13 @@ class GameTest < Minitest::Test
     # 勝利した
     player1 = MiniTest::Mock.new
     player1.expect(:piece, 1)
-    
-    player2 = MiniTest::Mock.new
 
-    game = Game.new(player1: player1, player2: player2, board: [[1, 1, 1], [0, 0, 0], [0, 0, 0]])
+    player2 = MiniTest::Mock.new
+    board = Board.new(
+      [[1, 1, 1], [0, 0, 0], [0, 0, 0]]
+    )
+
+    game = Game.new(player1: player1, player2: player2, board: board)
     assert_equal false, game.continue?()
 
     player1.verify
@@ -98,11 +110,15 @@ class GameTest < Minitest::Test
     # 敗北した
     player1 = MiniTest::Mock.new
     player1.expect(:piece, 1)
-    
+    player1.expect(:equal?, true, [player1])
+
     player2 = MiniTest::Mock.new
     player2.expect(:piece, 2)
+    board = Board.new(
+      [[2, 2, 2], [0, 0, 0], [0, 0, 0]]
+    )
 
-    game = Game.new(player1: player1, player2: player2, board: [[2, 2, 2], [0, 0, 0], [0, 0, 0]])
+    game = Game.new(player1: player1, player2: player2, board:board)
     assert_equal false, game.continue?()
 
     # 引き分けになった
@@ -111,14 +127,19 @@ class GameTest < Minitest::Test
 
     player1 = MiniTest::Mock.new
     player1.expect(:piece, 1)
-    
+    player1.expect(:equal?, true, [player1])
+
     player2 = MiniTest::Mock.new
     player2.expect(:piece, 2)
+    board = Board.new(
+      [[1, 1, 2], [2, 2, 1], [1, 2, 1]]
+    )
 
-    game = Game.new(player1: player1, player2: player2, board: [[1, 1, 2], [2, 2, 1], [1, 2, 1]])
+    game = Game.new(player1: player1, player2: player2, board: board)
     assert_equal false, game.continue?()
 
     player1.verify
     player2.verify
+
   end
 end

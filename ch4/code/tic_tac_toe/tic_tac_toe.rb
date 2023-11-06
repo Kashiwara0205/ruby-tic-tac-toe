@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "./game_factory"
+require_relative "game_factory"
 
 # 三目並べの実行クラス
 class TicTacToe

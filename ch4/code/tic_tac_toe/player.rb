@@ -28,7 +28,7 @@ class Player
     puts e.message
     puts ""
     select_position
-  rescue StandardError => e
+  rescue e
     raise e
   end
 
