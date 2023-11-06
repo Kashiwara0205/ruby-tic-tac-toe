@@ -9,7 +9,7 @@ class TicTacToe
     #       このメソッドをコールするとゲームが始まる
     # 引数: なし
     # 戻り値: なし
-    def self.start
+    def start
       game = GameFactory.create
 
       while game.continue?

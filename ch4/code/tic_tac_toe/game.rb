@@ -57,6 +57,13 @@ class Game
   def execute_player_turn
     row, col = @current_player.select_position
     @board.update(row, col, @current_player.piece)
+  rescue StandardError => e
+    puts ""
+    puts e.message
+    puts ""
+    execute_player_turn
+  rescue e
+    raise e
   end
 
   private

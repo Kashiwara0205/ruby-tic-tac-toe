@@ -41,11 +41,18 @@ class Board
   end
 
   # 概要: ゲーム板にコマを配置する
-  # 引数: row: 更新する行番号
-  #      col: 更新する列番号
+  # 引数: user_input_row: 入力された更新する行番号
+  #      user_input_col: 入力された更新する列番号
   #      piece: プレイヤーのコマ
   # 戻り値: なし
-  def update(row, col, piece)
+  def update(user_input_row, user_input_col, piece)
+    validate_input_value!(user_input_row, user_input_col)
+
+    row = user_input_row.to_i
+    col = user_input_col.to_i
+
+    validate_place!(row, col)
+
     @board[row][col] = piece
   end
 
@@ -61,5 +68,22 @@ class Board
       end
       puts ""
     end
+  end
+
+  private
+
+  # 概要: 正常な数値の範囲かどうかを検証する
+  # 引数: row: 行番号, col: 列番号
+  # 戻り値: なし
+  def validate_input_value!(user_input_row, user_input_col)
+    raise StandardError, "行番号の入力に誤りがあります" if user_input_row !~ /^[0-2]$/
+    raise StandardError, "列番号の入力に誤りがあります" if user_input_col !~ /^[0-2]$/
+  end
+
+  # 概要: そのマスが既に埋まってないかどうか
+  # 引数: row: 行番号, col: 列番号
+  # 戻り値: なし
+  def validate_place!(row, col)
+    raise StandardError, "このマスは既に埋まっています" if EMPTY_SQUARE != @board[row][col]
   end
 end
