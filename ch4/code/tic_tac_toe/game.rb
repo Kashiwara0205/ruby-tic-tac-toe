@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "const"
+require_relative "tic_tac_toe_input_error"
 
 # ゲームの進行状況を管理する
 class Game
@@ -57,7 +58,7 @@ class Game
   def execute_player_turn
     row, col = @current_player.select_position
     @board.update(row, col, @current_player.piece)
-  rescue StandardError => e
+  rescue TicTacToeInputError => e
     puts ""
     puts e.message
     puts ""

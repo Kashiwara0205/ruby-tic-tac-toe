@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "const"
+require_relative "tic_tac_toe_input_error"
 
 # ゲームの"板"に関する情報を管理する
 class Board
@@ -76,14 +77,14 @@ class Board
   # 引数: row: 行番号, col: 列番号
   # 戻り値: なし
   def validate_input_value!(user_input_row, user_input_col)
-    raise StandardError, "行番号の入力に誤りがあります" if user_input_row !~ /^[0-2]$/
-    raise StandardError, "列番号の入力に誤りがあります" if user_input_col !~ /^[0-2]$/
+    raise TicTacToeInputError, "行番号の入力に誤りがあります" if user_input_row !~ /^[0-2]$/
+    raise TicTacToeInputError, "列番号の入力に誤りがあります" if user_input_col !~ /^[0-2]$/
   end
 
   # 概要: そのマスが既に埋まってないかどうか
   # 引数: row: 行番号, col: 列番号
   # 戻り値: なし
   def validate_place!(row, col)
-    raise StandardError, "このマスは既に埋まっています" if EMPTY_SQUARE != @board[row][col]
+    raise TicTacToeInputError, "このマスは既に埋まっています" if EMPTY_SQUARE != @board[row][col]
   end
 end
