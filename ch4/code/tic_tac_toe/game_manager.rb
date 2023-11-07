@@ -4,7 +4,7 @@ require_relative "const"
 require_relative "tic_tac_toe_input_error"
 
 # ゲームの進行状況を管理する
-class Game
+class GameManager
   attr_reader :player1, :player2
 
   def initialize(player1:, player2:, board:)

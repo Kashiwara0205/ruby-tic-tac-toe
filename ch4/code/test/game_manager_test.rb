@@ -1,5 +1,5 @@
 require "minitest/autorun"
-require_relative "../tic_tac_toe/game"
+require_relative "../tic_tac_toe/game_manager"
 require_relative "../tic_tac_toe/board"
 class GameTest < Minitest::Test
 
@@ -17,7 +17,7 @@ class GameTest < Minitest::Test
       [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
     )
 
-    game = Game.new(player1: player1, player2: player2, board: board)
+    game = GameManager.new(player1: player1, player2: player2, board: board)
 
     assert_equal player1.object_id, game.instance_variable_get(:@current_player).object_id
 
@@ -43,7 +43,7 @@ class GameTest < Minitest::Test
       [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
     )
 
-    game = Game.new(player1: player1, player2: player2, board: board)
+    game = GameManager.new(player1: player1, player2: player2, board: board)
 
     game.execute_player_turn()
     assert_equal 1, board.board[2][1]
@@ -70,7 +70,7 @@ class GameTest < Minitest::Test
       [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
     )
 
-    game = Game.new(player1: player1, player2: player2, board: board)
+    game = GameManager.new(player1: player1, player2: player2, board: board)
     assert game.continue?()
 
     player1.verify
@@ -87,7 +87,7 @@ class GameTest < Minitest::Test
       [[1, 2, 0], [0, 0, 0], [0, 0, 0]]
     )
 
-    game = Game.new(player1: player1, player2: player2, board: board)
+    game = GameManager.new(player1: player1, player2: player2, board: board)
     assert game.continue?()
 
     player1.verify
@@ -102,7 +102,7 @@ class GameTest < Minitest::Test
       [[1, 1, 1], [0, 0, 0], [0, 0, 0]]
     )
 
-    game = Game.new(player1: player1, player2: player2, board: board)
+    game = GameManager.new(player1: player1, player2: player2, board: board)
     assert_equal false, game.continue?()
 
     player1.verify
@@ -118,7 +118,7 @@ class GameTest < Minitest::Test
       [[2, 2, 2], [0, 0, 0], [0, 0, 0]]
     )
 
-    game = Game.new(player1: player1, player2: player2, board:board)
+    game = GameManager.new(player1: player1, player2: player2, board:board)
     assert_equal false, game.continue?()
 
     # 引き分けになった
@@ -135,7 +135,7 @@ class GameTest < Minitest::Test
       [[1, 1, 2], [2, 2, 1], [1, 2, 1]]
     )
 
-    game = Game.new(player1: player1, player2: player2, board: board)
+    game = GameManager.new(player1: player1, player2: player2, board: board)
     assert_equal false, game.continue?()
 
     player1.verify

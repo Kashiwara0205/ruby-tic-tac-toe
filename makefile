@@ -14,7 +14,7 @@ all_test:
 
 	cd ch4; docker-compose up -d;
 	docker exec -ti code bash -c "ruby test/board_test.rb"
-	docker exec -ti code bash -c "ruby test/game_test.rb"
+	docker exec -ti code bash -c "ruby test/game_manager_test.rb"
 	docker exec -ti code bash -c "ruby test/player_test.rb"
 	docker exec -ti code bash -c "rubocop tic_tac_toe"
 	cd ch4; docker-compose down;
