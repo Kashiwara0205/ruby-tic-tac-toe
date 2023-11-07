@@ -1,7 +1,7 @@
 require "minitest/autorun"
 require_relative "../tic_tac_toe/game_manager"
 require_relative "../tic_tac_toe/board"
-class GameTest < Minitest::Test
+class GameManagerTest < Minitest::Test
 
   # 概要: ゲームターンが更新され現在のプレイヤーが変わっていることを確認
   # 期待値: PLAYER_1ならPLAYER_2に
