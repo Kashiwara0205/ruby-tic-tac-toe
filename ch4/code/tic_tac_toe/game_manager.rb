@@ -53,14 +53,14 @@ class GameManager
     @board.print_board
   end
 
-  def execute_player_turn
+  def player_turn
     row, col = @current_player.gets_piece_location
     @board.update(row, col, @current_player.piece)
   rescue TicTacToeInputError => e
     puts ""
     puts e.message
     puts ""
-    execute_player_turn
+    player_turn
   rescue e
     raise e
   end

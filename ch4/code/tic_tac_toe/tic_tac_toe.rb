@@ -13,7 +13,7 @@ class TicTacToe
       game = GameFactory.create
 
       while game.continue?
-        game.execute_player_turn
+        game.player_turn
         game.print_board
 
         game.update_to_next_turn
