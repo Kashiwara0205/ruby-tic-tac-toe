@@ -2,6 +2,7 @@
 
 require_relative "const"
 require_relative "tic_tac_toe_input_error"
+require_relative "tic_tac_toe_validator"
 
 # ゲームの進行状況を管理する
 class GameManager

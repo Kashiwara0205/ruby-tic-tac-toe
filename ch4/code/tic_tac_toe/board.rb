@@ -2,6 +2,7 @@
 
 require_relative "const"
 require_relative "tic_tac_toe_input_error"
+require_relative "tic_tac_toe_validator"
 
 # ゲームの"板"に関する情報を管理する
 class Board
@@ -47,7 +48,7 @@ class Board
   #      piece: プレイヤーのコマ
   # 戻り値: なし
   def update(row, col, piece)
-    validate_place!(row, col)
+    TicTacToeValidator.validate_place!(@board, row, col)
     @board[row][col] = piece
   end
 
@@ -65,14 +66,5 @@ class Board
       puts ""
     end
     puts ""
-  end
-
-  private
-
-  # 概要: そのマスが既に埋まってないかどうか
-  # 引数: row: 行番号, col: 列番号
-  # 戻り値: なし
-  def validate_place!(row, col)
-    raise TicTacToeInputError, "このマスは既に埋まっています" if EMPTY_SQUARE != @board[row][col]
   end
 end

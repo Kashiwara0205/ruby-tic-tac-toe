@@ -1,5 +1,6 @@
 require "minitest/autorun"
 require_relative "../tic_tac_toe/player"
+require_relative "../tic_tac_toe/tic_tac_toe_input_error"
 
 class PlayerTest < Minitest::Test
   # 概要:  コマを置く場所を取得した時に整数に変換されることを担保する
