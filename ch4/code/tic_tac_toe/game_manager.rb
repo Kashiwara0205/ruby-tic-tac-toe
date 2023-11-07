@@ -6,8 +6,6 @@ require_relative "tic_tac_toe_validator"
 
 # ゲームの進行状況を管理する
 class GameManager
-  attr_reader :player1, :player2
-
   def initialize(player1:, player2:, board:)
     @player1 = player1
     @player2 = player2
