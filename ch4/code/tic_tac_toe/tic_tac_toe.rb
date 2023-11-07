@@ -14,12 +14,12 @@ class TicTacToe
 
       while game.continue?
         game.execute_player_turn
-        game.put_board
+        game.print_board
 
         game.update_to_next_turn
       end
 
-      game.put_result
+      game.print_result
     end
   end
 end

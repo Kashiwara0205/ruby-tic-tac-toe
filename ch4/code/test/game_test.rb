@@ -36,7 +36,7 @@ class GameTest < Minitest::Test
     player1 = MiniTest::Mock.new
     player2 = MiniTest::Mock.new
 
-    player1.expect(:select_position, ["2", "1"])
+    player1.expect(:gets_piece_location, ["2", "1"])
     player1.expect(:piece, 1)
 
     board = Board.new(

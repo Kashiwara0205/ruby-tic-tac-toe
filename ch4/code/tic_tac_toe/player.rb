@@ -13,7 +13,7 @@ class Player
   # 概要: コマを配置する行と列の値をコンソールから受け取り返却する
   # 引数: なし
   # 戻り値: 入力された行と列の情報を配列に格納して返却する => ["1", "1"]
-  def select_position
+  def gets_piece_location
     print "行を入力してください:"
     row = gets
 

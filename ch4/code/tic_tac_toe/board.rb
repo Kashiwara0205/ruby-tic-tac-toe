@@ -37,7 +37,7 @@ class Board
   # 引数: なし
   # 戻り値: コマを配置する場所がある => true
   #         コマを配置する場所がない => false
-  def exists_empty_square
+  def can_plase_piece?
     @board.any? { |row| row.any? { |a| EMPTY_SQUARE == a } }
   end
 
@@ -60,7 +60,8 @@ class Board
   # 説明: ゲーム板の状態をコンソールに出力する
   # 引数: なし
   # 戻り値: なし
-  def put_board
+  def print_board
+    puts ""
     @board.each do |row|
       row.each do |e|
         print " N " if EMPTY_SQUARE == e
@@ -69,6 +70,7 @@ class Board
       end
       puts ""
     end
+    puts ""
   end
 
   private

@@ -21,7 +21,7 @@ class Game
   def continue?
     return false if @board.win?(@current_player.piece)
     return false if @board.win?(opponent_player(@current_player).piece)
-    return false if !@board.exists_empty_square
+    return false if !@board.can_plase_piece?
 
     true
   end
@@ -36,7 +36,7 @@ class Game
   # 概要: ゲームの結果をコンソールに出力する
   # 引数: なし
   # 戻り値: なし
-  def put_result
+  def print_result
     if @board.win?(@player1)
       puts "Player1が勝利しました!"
     elsif  @board.win?(@player2)
@@ -49,14 +49,12 @@ class Game
   # 説明: ゲーム板の状態をコンソールに出力する
   # 引数: なし
   # 戻り値: なし
-  def put_board
-    puts ""
-    @board.put_board
-    puts ""
+  def print_board
+    @board.print_board
   end
 
   def execute_player_turn
-    row, col = @current_player.select_position
+    row, col = @current_player.gets_piece_location
     @board.update(row, col, @current_player.piece)
   rescue TicTacToeInputError => e
     puts ""
