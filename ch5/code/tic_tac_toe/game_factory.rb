@@ -17,15 +17,22 @@ class GameFactory
                           [OPEN_SLOT, OPEN_SLOT, OPEN_SLOT]
                         ])
 
-      GameManager.new(player1: create_player(player1_name), player2: create_player(player2_name),
-                      board: board)
+      player1 = create_player(player1_name, PLAYER1_PIECE)
+      player2 = create_player(player2_name, PLAYER2_PIECE)
+
+      GameManager.new(
+        player1: player1,
+        player2: player2,
+        board: board
+      )
     end
 
     private
 
     def create_player(player_name, piece)
-      RandomComPlayer.new(piece: piece) if  RANDOM_COM_PLAYER == player_name
-      OrdelyComPlayer.new(piece: piece) if  ORDINALY_COM_PLAYER == player_name
+      return RandomComPlayer.new(piece: piece) if  RANDOM_COM_PLAYER == player_name
+      return OrdelyComPlayer.new(piece: piece) if  ORDINALY_COM_PLAYER == player_name
+
       UserPlayer.new(piece: piece) if USER_PLAYER == player_name
     end
   end
