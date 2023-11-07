@@ -1,5 +1,5 @@
 require "minitest/autorun"
-require "../tic_tac_toe/tic_tac_toe"
+require "./tic_tac_toe/tic_tac_toe"
 
 class TicTacToeTest < Minitest::Test
 
@@ -119,15 +119,15 @@ class TicTacToeTest < Minitest::Test
   #         - 置き場所がある
   #         以下の条件時にfalseが返却される
   #         - 置き場所がない
-  def test_has_empty_square
+  def test_can_plase_piece?
     board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
-    assert has_empty_square(board)
+    assert can_plase_piece?(board)
 
     board = [[1, 1, 2], [2, 0, 1], [1, 2, 1]]
-    assert has_empty_square(board)
+    assert can_plase_piece?(board)
 
     board = [[1, 1, 2], [2, 2, 1], [1, 2, 1]]
-    assert_equal false, has_empty_square(board)
+    assert_equal false, can_plase_piece?(board)
   end 
 
   # 概要:  ゲームの継続条件を担保する
@@ -157,10 +157,10 @@ class TicTacToeTest < Minitest::Test
 
   # 概要:  コマを置く場所を取得した時に整数に変換されることを担保する
   # 期待値: 整数の1がrowとcolにそれぞれ返却されること
-  def test_gets_position
+  def test_gets_piece_location
     stub(:print, nil) do 
       stub(:gets, "1") do 
-        row, col = gets_position()
+        row, col = gets_piece_location()
         assert_equal 1, row
         assert_equal 1, col
       end

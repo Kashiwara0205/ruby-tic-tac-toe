@@ -1,7 +1,7 @@
 # 説明: ゲーム板の状態をコンソールに出力する
 # 引数: board: ゲーム板, 3 x 3の二次元配列
 # 戻り値: なし
-def put_board board
+def print_board board
   puts ""
   board.each do |row|
     row.each do |e|
@@ -59,7 +59,7 @@ end
 # 説明: コマを配置する行と列の値をコンソールから受け取り返却する
 # 引数: なし
 # 戻り値: 入力された行と列の情報を配列に格納して数値で返す => [1, 1]
-def gets_position
+def gets_piece_location
   print "行を入力してください:"
   row = gets
 
@@ -82,7 +82,7 @@ end
 # 引数: board: ゲーム板, 3 x 3の二次元配列
 # 戻り値: コマを配置する場所がある => true
 #         コマを配置する場所がない => false
-def has_empty_square? board
+def can_plase_piece? board
   return board.any?{|row| row.any?{|a| 0 == a} } 
 end
 
@@ -94,7 +94,7 @@ end
 def continue? player, board
   return false if win?(player, board)
   return false if lose?(player, board)
-  return false if !has_empty_square?(board)
+  return false if !can_plase_piece?(board)
 
   return true
 end
@@ -102,7 +102,7 @@ end
 # 説明: ゲームの結果をコンソールに出力する
 # 引数: board: ゲーム板, 3 x 3の二次元配列
 # 戻り値: なし
-def put_result board
+def print_result board
   if win?(1, board)
     puts "Player1が勝利しました!"
   elsif win?(2, board)
@@ -116,13 +116,13 @@ player = 1
 board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 
 while continue?(player, board)
-  row, col = gets_position()
+  row, col = gets_piece_location()
 
   place_piece(board, player, row, col)
 
-  put_board(board)
+  print_board(board)
 
   player = get_opponent_player(player)
 end
 
-put_result(board)
+print_result(board)
