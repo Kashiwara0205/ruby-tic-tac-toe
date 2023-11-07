@@ -9,8 +9,8 @@ class PlayerTest < Minitest::Test
     player.stub(:print, nil) do 
       player.stub(:gets, "1") do
         row, col = player.select_position()
-        assert_equal 1, row
-        assert_equal 1, col
+        assert_equal "1", row
+        assert_equal "1", col
       end
     end
   end
