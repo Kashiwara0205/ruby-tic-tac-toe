@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "const"
-require_relative "tic_tac_toe_input_error"
+require_relative "errors/tic_tac_toe_input_error"
 require_relative "tic_tac_toe_validator"
 
 # ゲームの"板"に関する情報を管理する

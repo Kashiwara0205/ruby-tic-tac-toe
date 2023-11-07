@@ -1,6 +1,6 @@
 require "minitest/autorun"
 require_relative "../tic_tac_toe/tic_tac_toe_validator"
-require_relative "../tic_tac_toe/tic_tac_toe_input_error"
+require_relative "../tic_tac_toe/errors/tic_tac_toe_input_error"
 
 class TicTacToeValidatorTest < Minitest::Test
 

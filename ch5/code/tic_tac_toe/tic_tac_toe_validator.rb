@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "tic_tac_toe_input_error"
+require_relative "errors/tic_tac_toe_input_error"
 require_relative "const"
 
 # 3目並べの入力地に対するバリデーションを実装するクラス

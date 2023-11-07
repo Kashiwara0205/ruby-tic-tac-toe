@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative "const"
 require_relative "game_factory"
 
 # 三目並べの実行クラス
@@ -10,7 +11,7 @@ class TicTacToe
     # 引数: なし
     # 戻り値: なし
     def start
-      game = GameFactory.create
+      game = GameFactory.create(RANDOM_COM_PLAYER, RANDOM_COM_PLAYER)
 
       while game.continue?
         game.player_turn

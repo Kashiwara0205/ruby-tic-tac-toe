@@ -1,19 +1,14 @@
 # frozen_string_literal: true
 
-require_relative "tic_tac_toe_validator"
+require_relative "base_player"
+require_relative "../tic_tac_toe_validator"
 
-# Playerの打ち手を管理をする
-class Player
-  attr_reader :piece
-
-  def initialize(piece:)
-    @piece = piece
-  end
-
+# ユーザからの入力値を取得するクラス
+class UserPlayer < BasePlayer
   # 概要: コマを配置する行と列の値をコンソールから受け取り返却する
   # 引数: なし
   # 戻り値: 入力された行と列の情報を配列に格納して返却する => ["1", "1"]
-  def gets_piece_location
+  def gets_piece_location(_board_state)
     print "行を入力してください:"
     user_input_row = gets
 

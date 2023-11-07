@@ -35,13 +35,12 @@ class GameTest < Minitest::Test
   def test_player_turn
     player1 = MiniTest::Mock.new
     player2 = MiniTest::Mock.new
-
-    player1.expect(:gets_piece_location, [2, 1])
-    player1.expect(:piece, 1)
-
     board = Board.new(
       [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
     )
+    
+    player1.expect(:gets_piece_location, [2, 1], [board.board_state])
+    player1.expect(:piece, 1)
 
     game = GameManager.new(player1: player1, player2: player2, board: board)
 
