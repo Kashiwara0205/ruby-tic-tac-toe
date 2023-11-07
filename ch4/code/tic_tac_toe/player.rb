@@ -4,7 +4,6 @@ require_relative "tic_tac_toe_validator"
 
 # Playerの打ち手を管理をする
 class Player
-  class GetsPositionError < StandardError; end
 
   attr_reader :piece
 
