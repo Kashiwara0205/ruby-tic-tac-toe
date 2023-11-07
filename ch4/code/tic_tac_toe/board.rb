@@ -39,7 +39,7 @@ class Board
   # 戻り値: コマを配置する場所がある => true
   #         コマを配置する場所がない => false
   def can_plase_piece?
-    @board.any? { |row| row.any? { |a| EMPTY_SQUARE == a } }
+    @board.any? { |row| row.any? { |a| OPEN_SLOT == a } }
   end
 
   # 概要: ゲーム板にコマを配置する
@@ -59,7 +59,7 @@ class Board
     puts ""
     @board.each do |row|
       row.each do |e|
-        print " N " if EMPTY_SQUARE == e
+        print " N " if OPEN_SLOT == e
         print " o " if PLAYER1_PIECE == e
         print " x " if PLAYER2_PIECE == e
       end

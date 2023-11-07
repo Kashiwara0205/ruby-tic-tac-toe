@@ -10,9 +10,9 @@ class GameFactory
   class << self
     def create
       board = Board.new([
-                          [EMPTY_SQUARE, EMPTY_SQUARE, EMPTY_SQUARE],
-                          [EMPTY_SQUARE, EMPTY_SQUARE, EMPTY_SQUARE],
-                          [EMPTY_SQUARE, EMPTY_SQUARE, EMPTY_SQUARE]
+                          [OPEN_SLOT, OPEN_SLOT, OPEN_SLOT],
+                          [OPEN_SLOT, OPEN_SLOT, OPEN_SLOT],
+                          [OPEN_SLOT, OPEN_SLOT, OPEN_SLOT]
                         ])
 
       Game.new(player1: Player.new(piece: PLAYER1_PIECE), player2: Player.new(piece: PLAYER2_PIECE), board: board)

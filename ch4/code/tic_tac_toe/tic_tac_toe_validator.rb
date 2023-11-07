@@ -10,7 +10,7 @@ class TicTacToeValidator
     # 引数: board: 現在進行中のゲーム板, row: 行番号, col: 列番号
     # 戻り値: なし
     def validate_place!(board, row, col)
-      raise TicTacToeInputError, "このマスは既に埋まっています" if EMPTY_SQUARE != board[row][col]
+      raise TicTacToeInputError, "このマスは既に埋まっています" if OPEN_SLOT != board[row][col]
     end
 
     # 概要: ユーザからの入力値が適切かどうか
