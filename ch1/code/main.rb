@@ -38,16 +38,6 @@ def win? player, board
   return false
 end
 
-# 説明: ゲームの敗北判定
-# 引数: player: プレイヤーを表す。1 or 2の数値
-#      board: ゲーム板, 3 x 3の二次元配列
-# 戻り値: 敗北している場合 => true
-#       それ以外 => false
-def lose? player, board
-  opponent = get_opponent_player(player)
-  return win?(opponent, board)
-end
-
 # 説明: 対戦中の相手プレイヤーを返却する
 # 引数: player: プレイヤーを表す。1 or 2の数値
 # 戻り値: 1の時 => 2
@@ -90,13 +80,12 @@ end
 # 引数: player: プレイヤーを表す。1 or 2の数値
 #       board: ゲーム板, 3 x 3の二次元配列
 # 戻り値: ゲームが続いている場合 => true
-#        ゲームが終わった場合 => false
+#        ゲームが終わった場合 => falsetest/tic_tac_toe_test.rb
 def continue? player, board
-  return false if win?(player, board)
-  return false if lose?(player, board)
-  return false if !can_plase_piece?(board)
+  return false if win?(get_opponent_player(player), board)
+  return true if can_plase_piece?(board)
 
-  return true
+  return false
 end
 
 # 説明: ゲームの結果をコンソールに出力する

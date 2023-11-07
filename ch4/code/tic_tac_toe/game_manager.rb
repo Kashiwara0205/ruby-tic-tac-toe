@@ -20,11 +20,10 @@ class GameManager
   # 戻り値: ゲームが続いている場合 => true
   #        ゲームが終わった場合 => false
   def continue?
-    return false if @board.win?(@current_player.piece)
     return false if @board.win?(opponent_player(@current_player).piece)
-    return false if !@board.can_plase_piece?
+    return true if @board.can_plase_piece?
 
-    true
+    false
   end
 
   # 概要: 現在のプレイ中のプレイヤーを更新し次のターンに移行する
@@ -38,9 +37,9 @@ class GameManager
   # 引数: なし
   # 戻り値: なし
   def print_result
-    if @board.win?(@player1)
+    if @board.win?(@player1.piece)
       puts "Player1が勝利しました!"
-    elsif  @board.win?(@player2)
+    elsif @board.win?(@player2.piece)
       puts "Player2が勝利しました!"
     else
       puts "引き分けです!"

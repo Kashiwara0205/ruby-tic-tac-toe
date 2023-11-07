@@ -55,17 +55,16 @@ class GameTest < Minitest::Test
   # 期待値: ゲームが進行可能な状態な時にtrueが返却される
   #         以下の条件時にfalseが返却される
   #         - プレイヤーが勝利した
-  #         - プレイヤーが敗北した
   #         - 引き分けになった
   def test_continue?
 
     # 継続可能
     player1 = MiniTest::Mock.new
-    player1.expect(:piece, 1)
     player1.expect(:equal?, true, [player1])
 
     player2 = MiniTest::Mock.new
     player2.expect(:piece, 2)
+    
     board = Board.new(
       [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
     )
@@ -78,11 +77,11 @@ class GameTest < Minitest::Test
     
     # 継続可能
     player1 = MiniTest::Mock.new
-    player1.expect(:piece, 1)
     player1.expect(:equal?, true, [player1])
 
     player2 = MiniTest::Mock.new
     player2.expect(:piece, 2)
+
     board = Board.new(
       [[1, 2, 0], [0, 0, 0], [0, 0, 0]]
     )
@@ -95,11 +94,13 @@ class GameTest < Minitest::Test
 
     # 勝利した
     player1 = MiniTest::Mock.new
-    player1.expect(:piece, 1)
+    player1.expect(:equal?, true, [player1])
 
     player2 = MiniTest::Mock.new
+    player2.expect(:piece, 2)
+
     board = Board.new(
-      [[1, 1, 1], [0, 0, 0], [0, 0, 0]]
+      [[1, 1, 1], [2, 2, 2], [0, 0, 0]]
     )
 
     game = GameManager.new(player1: player1, player2: player2, board: board)
@@ -107,30 +108,16 @@ class GameTest < Minitest::Test
 
     player1.verify
 
-    # 敗北した
-    player1 = MiniTest::Mock.new
-    player1.expect(:piece, 1)
-    player1.expect(:equal?, true, [player1])
-
-    player2 = MiniTest::Mock.new
-    player2.expect(:piece, 2)
-    board = Board.new(
-      [[2, 2, 2], [0, 0, 0], [0, 0, 0]]
-    )
-
-    game = GameManager.new(player1: player1, player2: player2, board:board)
-    assert_equal false, game.continue?()
-
     # 引き分けになった
     player1.verify
     player2.verify
 
     player1 = MiniTest::Mock.new
-    player1.expect(:piece, 1)
     player1.expect(:equal?, true, [player1])
 
     player2 = MiniTest::Mock.new
     player2.expect(:piece, 2)
+
     board = Board.new(
       [[1, 1, 2], [2, 2, 1], [1, 2, 1]]
     )

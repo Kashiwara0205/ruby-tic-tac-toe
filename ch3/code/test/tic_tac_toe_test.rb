@@ -71,49 +71,6 @@ class TicTacToeTest < Minitest::Test
     assert_equal false, win?(player, board)
   end
 
-  # 概要: プレイヤーの敗北条件を担保
-  # 期待値: 以下の条件時にtrueが返却される
-  #         - 相手プレイヤーのコマが横に三列揃っている
-  #         - 相手プレイヤーのコマが縦に三列揃っている
-  #         - 相手プレイヤーのコマが斜めに三列揃っている
-  #        それ以外の場合はfalseが返却される
-  def test_lose?
-    player = 1
-
-    board = [[2, 2, 2], [0, 0, 0], [0, 0, 0]]
-    assert lose?(player, board)
-
-    board = [[0, 0, 0], [2, 2, 2], [0, 0, 0]]
-    assert lose?(player, board)
-
-    board = [[0, 0, 0], [0, 0, 0], [2, 2, 2]]
-    assert lose?(player, board)
-
-    board = [[2, 0, 0], [2, 0, 0], [2, 0, 0]]
-    assert lose?(player, board)
-
-    board = [[0, 2, 0], [0, 2, 0], [0, 2, 0]]
-    assert lose?(player, board)
-
-    board = [[0, 0, 2], [0, 0, 2], [0, 0, 2]]
-    assert lose?(player, board)
-
-    board = [[2, 0, 0], [0, 2, 0], [0, 0, 2]]
-    assert lose?(player, board)
-
-    board = [[0, 0, 2], [0, 2, 0], [2, 0, 0]]
-    assert lose?(player, board)
-
-    board = [[0, 0, 0], [0, 2, 2], [0, 0, 0]]
-    assert_equal false, lose?(player, board)
-
-    board = [[0, 0, 0], [1, 1, 1], [0, 0, 0]]
-    assert_equal false, lose?(player, board)
-
-    board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
-    assert_equal false, lose?(player, board)
-  end
-
   # 概要:  コマを置く場所が存在するかどうかの判定部分を担保する
   # 期待値: 以下の条件時にtrueが返却される
   #         - 置き場所がある
@@ -134,7 +91,6 @@ class TicTacToeTest < Minitest::Test
   # 期待値: ゲームが進行可能な状態な時にtrueが返却される
   #         以下の条件時にfalseが返却される
   #         - プレイヤーが勝利した
-  #         - プレイヤーが敗北した
   #         - 引き分けになった
   def test_continue?
     player = 1
@@ -145,11 +101,11 @@ class TicTacToeTest < Minitest::Test
     board = [[1, 2, 0], [0, 0, 0], [0, 0, 0]]
     assert continue?(player, board)
 
-    board = [[1, 1, 1], [0, 0, 0], [0, 0, 0]]
+    board = [[1, 1, 1], [2, 2, 2], [0, 0, 0]]
     assert_equal false, continue?(player, board)
 
-    board = [[2, 2, 2], [0, 0, 0], [0, 0, 0]]
-    assert_equal false, continue?(player, board)
+    board = [[1, 0, 2], [1, 1, 0], [0, 0, 2]]
+    assert_equal true, continue?(player, board)
 
     board = [[1, 1, 2], [2, 2, 1], [1, 2, 1]]
     assert_equal false, continue?(player, board)
