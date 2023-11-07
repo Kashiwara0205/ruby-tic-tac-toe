@@ -6,8 +6,6 @@ require_relative "const"
 # 3目並べの入力地に対するバリデーションを実装するクラス
 class TicTacToeValidator
   class << self
-    def hoge; end
-
     # 概要: そのマスが既に埋まってないかどうか
     # 引数: board: 現在進行中のゲーム板, row: 行番号, col: 列番号
     # 戻り値: なし
