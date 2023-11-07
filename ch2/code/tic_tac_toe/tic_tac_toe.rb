@@ -113,7 +113,9 @@ def start
     row, col = gets_piece_location()
   
     place_piece(board, player, row, col)
-  
+
+    print_board(board)
+    
     break if !continue?(player, board)
   
     player = get_opponent_player(player)

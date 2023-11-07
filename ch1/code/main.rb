@@ -109,6 +109,8 @@ loop do
 
   place_piece(board, player, row, col)
 
+  print_board(board)
+
   break if !continue?(player, board)
 
   player = get_opponent_player(player)
