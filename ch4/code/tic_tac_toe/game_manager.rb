@@ -20,7 +20,7 @@ class GameManager
   # 戻り値: ゲームが続いている場合 => true
   #        ゲームが終わった場合 => false
   def continue?
-    return false if @board.win?(opponent_player(@current_player).piece)
+    return false if @board.win?(@current_player.piece)
     return true if @board.can_plase_piece?
 
     false

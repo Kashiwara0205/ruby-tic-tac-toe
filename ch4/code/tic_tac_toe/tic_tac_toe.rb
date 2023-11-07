@@ -12,9 +12,10 @@ class TicTacToe
     def start
       game = GameFactory.create
 
-      while game.continue?
+      loop do
         game.player_turn
         game.print_board
+        break if !game.continue?
 
         game.change_to_opponent_turn
       end

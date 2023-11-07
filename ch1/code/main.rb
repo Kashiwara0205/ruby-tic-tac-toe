@@ -82,7 +82,7 @@ end
 # 戻り値: ゲームが続いている場合 => true
 #        ゲームが終わった場合 => falsetest/tic_tac_toe_test.rb
 def continue? player, board
-  return false if win?(get_opponent_player(player), board)
+  return false if win?(player, board)
   return true if can_plase_piece?(board)
 
   return false
@@ -104,12 +104,12 @@ end
 player = 1
 board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 
-while continue?(player, board)
+loop do
   row, col = gets_piece_location()
 
   place_piece(board, player, row, col)
 
-  print_board(board)
+  break if !continue?(player, board)
 
   player = get_opponent_player(player)
 end

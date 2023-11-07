@@ -80,9 +80,9 @@ end
 # 引数: player: プレイヤーを表す。1 or 2の数値
 #       board: ゲーム板, 3 x 3の二次元配列
 # 戻り値: ゲームが続いている場合 => true
-#        ゲームが終わった場合 => false
+#        ゲームが終わった場合 => falsetest/tic_tac_toe_test.rb
 def continue? player, board
-  return false if win?(get_opponent_player(player), board)
+  return false if win?(player, board)
   return true if can_plase_piece?(board)
 
   return false
@@ -109,16 +109,16 @@ def start
   player = 1
   board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
     
-  while continue?(player, board)
+  loop do
     row, col = gets_piece_location()
-    
+  
     place_piece(board, player, row, col)
-    
-    print_board(board)
-    
+  
+    break if !continue?(player, board)
+  
     player = get_opponent_player(player)
   end
-    
+  
   print_result(board)
 end
   
