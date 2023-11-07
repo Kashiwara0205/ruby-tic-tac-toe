@@ -16,7 +16,7 @@ class TicTacToe
         game.player_turn
         game.print_board
 
-        game.update_to_next_turn
+        game.change_to_opponent_turn
       end
 
       game.print_result

@@ -30,7 +30,7 @@ class GameManager
   # 概要: 現在のプレイ中のプレイヤーを更新し次のターンに移行する
   # 引数: なし
   # 戻り値: なし
-  def update_to_next_turn
+  def change_to_opponent_turn
     @current_player = opponent_player(@current_player)
   end
 

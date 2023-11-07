@@ -6,7 +6,7 @@ class GameTest < Minitest::Test
   # 概要: ゲームターンが更新され現在のプレイヤーが変わっていることを確認
   # 期待値: PLAYER_1ならPLAYER_2に
   #        PLAYER_2ならPLAYER_1に、それぞれ更新がかかる
-  def test_update_to_next_turn
+  def test_change_to_opponent_turn
     player1 = MiniTest::Mock.new
     player2 = MiniTest::Mock.new
 
@@ -21,11 +21,11 @@ class GameTest < Minitest::Test
 
     assert_equal player1.object_id, game.instance_variable_get(:@current_player).object_id
 
-    game.update_to_next_turn()
+    game.change_to_opponent_turn()
 
     assert_equal player2.object_id, game.instance_variable_get(:@current_player).object_id
 
-    game.update_to_next_turn()
+    game.change_to_opponent_turn()
 
     assert_equal player1.object_id, game.instance_variable_get(:@current_player).object_id
   end
@@ -46,7 +46,7 @@ class GameTest < Minitest::Test
     game = GameManager.new(player1: player1, player2: player2, board: board)
 
     game.player_turn()
-    assert_equal 1, board.board[2][1]
+    assert_equal 1, board.board_state[2][1]
 
     player1.verify
   end

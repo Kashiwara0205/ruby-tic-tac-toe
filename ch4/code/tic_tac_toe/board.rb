@@ -6,10 +6,12 @@ require_relative "tic_tac_toe_validator"
 
 # ゲームの"板"に関する情報を管理する
 class Board
-  attr_reader :board
-
   def initialize(board)
     @board = board
+  end
+
+  def board_state
+    @board
   end
 
   # 概要: 現在のプレイヤーのゲームの勝利判定
