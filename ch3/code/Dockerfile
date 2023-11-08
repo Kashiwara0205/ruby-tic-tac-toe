@@ -1,4 +1,4 @@
-FROM ruby:2.7
+FROM ruby:3.1
 RUN gem update --system
 RUN gem install bundler
 COPY Gemfile ./Gemfile
