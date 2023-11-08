@@ -31,7 +31,7 @@ class GameFactory
 
     def create_player(player_name, piece)
       return RandomComPlayer.new(piece: piece) if  RANDOM_COM_PLAYER == player_name
-      return OrdelyComPlayer.new(piece: piece) if  ORDINALY_COM_PLAYER == player_name
+      return OrdelyComPlayer.new(piece: piece) if  OEDERLY_COM_PLAYER == player_name
 
       UserPlayer.new(piece: piece) if USER_PLAYER == player_name
     end
