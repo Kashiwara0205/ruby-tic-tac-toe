@@ -13,6 +13,6 @@ class OrdelyComPlayer < BasePlayer
       end
     end
 
-    raise ComError, "OrdelyComPlayerクラスで配置場所が決まりませんでした"
+    raise ComError, "OrderlyComPlayerクラスで配置場所が決まりませんでした"
   end
 end

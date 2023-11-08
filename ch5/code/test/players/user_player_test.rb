@@ -17,7 +17,7 @@ class UserPlayerTest < Minitest::Test
   end
 
   # 概要:  誤った場所にコマを配置する
-  # 期待値: 整数の1がrowとcolにそれぞれ返却されること
+  # 期待値: TicTacToeInputErrorの発生とエラーメッセージの一致
   def test_put_piece_invalid_location
     player = UserPlayer.new(piece: 1)
     player.stub(:print, nil) do 

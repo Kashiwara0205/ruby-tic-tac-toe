@@ -3,7 +3,7 @@
 require_relative "const"
 require_relative "game_manager"
 require_relative "players/user_player"
-require_relative "players/ordely_com_player"
+require_relative "players/orderly_com_player"
 require_relative "players/random_com_player"
 require_relative "board"
 

@@ -3,16 +3,16 @@
 require_relative "base_player"
 require_relative "../const"
 require_relative "../errors/com_error"
+require_relative "../randomizer"
 
-# RandomComPlayerクラス: ランダムに配置する
+# ランダムにコマを配置する
 class RandomComPlayer < BasePlayer
   TRY_COUNT = 1000
 
   def gets_piece_location(board_state)
-    array = [0, 1, 2]
     TRY_COUNT.times do
-      i = array.sample
-      j = array.sample
+      i = Randomizer.create_random_index
+      j = Randomizer.create_random_index
       return [i, j] if OPEN_SLOT == board_state[i][j]
     end
 

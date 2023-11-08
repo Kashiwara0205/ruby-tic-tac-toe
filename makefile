@@ -25,6 +25,8 @@ all_test:
 	docker exec -ti code bash -c "ruby test/board_test.rb"
 	docker exec -ti code bash -c "ruby test/game_manager_test.rb"
 	docker exec -ti code bash -c "ruby test/players/user_player_test.rb"
+	docker exec -ti code bash -c "ruby test/players/orderly_com_player_test.rb"
+	docker exec -ti code bash -c "ruby test/players/random_com_player_test.rb"
 	docker exec -ti code bash -c "ruby test/tic_tac_toe_validator_test.rb"
 	docker exec -ti code bash -c "rubocop tic_tac_toe"
 	cd ch5; docker-compose down;
