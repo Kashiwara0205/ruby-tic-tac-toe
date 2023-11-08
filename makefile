@@ -3,16 +3,20 @@ all_test:
 	cd ch3; docker-compose down;
 	cd ch4; docker-compose down;
 	cd ch5; docker-compose down;
+	cd ch-rspec; docker-compose down;
 
+	echo "CH2"
 	cd ch2; docker-compose up -d;
 	docker exec -ti code bash -c "ruby test/tic_tac_toe_test.rb"
 	cd ch2; docker-compose down;
 
+	echo "CH3"
 	cd ch3; docker-compose up -d;
 	docker exec -ti code bash -c "ruby test/tic_tac_toe_test.rb"
 	docker exec -ti code bash -c "rubocop tic_tac_toe"
 	cd ch3; docker-compose down;
 
+	echo "CH4"
 	cd ch4; docker-compose up -d;
 	docker exec -ti code bash -c "ruby test/board_test.rb"
 	docker exec -ti code bash -c "ruby test/game_manager_test.rb"
@@ -21,6 +25,7 @@ all_test:
 	docker exec -ti code bash -c "rubocop tic_tac_toe"
 	cd ch4; docker-compose down;
 
+	echo "CH5"
 	cd ch5; docker-compose up -d;
 	docker exec -ti code bash -c "ruby test/board_test.rb"
 	docker exec -ti code bash -c "ruby test/game_manager_test.rb"
@@ -31,10 +36,16 @@ all_test:
 	docker exec -ti code bash -c "rubocop tic_tac_toe"
 	cd ch5; docker-compose down;
 
+	echo "CH-RSPEC"
+	cd ch-rspec; docker-compose up -d;
+
+	cd ch-rspec; docker-compose down;
+
 all_rubocop:
 	cd ch3; docker-compose down;
 	cd ch4; docker-compose down;
 	cd ch5; docker-compose down;
+	cd ch-rspec; docker-compose down;
 
 	cd ch3; docker-compose up -d;
 	docker exec -ti code bash -c "rubocop tic_tac_toe -a"
@@ -47,5 +58,9 @@ all_rubocop:
 	cd ch5; docker-compose up -d;
 	docker exec -ti code bash -c "rubocop tic_tac_toe -a"
 	cd ch5; docker-compose down;
+
+	cd ch-rspec; docker-compose up -d;
+	docker exec -ti code bash -c "rubocop tic_tac_toe -a"
+	cd ch-rspec; docker-compose down;
 in:
 	docker exec -ti code /bin/bash
