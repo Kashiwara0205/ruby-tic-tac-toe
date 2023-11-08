@@ -7,22 +7,22 @@ RSpec.describe "ゲームの進行クラスをテストする" do
   context "プレイヤー1とプレイヤー2のスイッチ処理について" do 
 
     it "プレイヤー1の場合プレイヤー2に切り替わる" do
-        player1 = UserPlayer.new(piece: 1)
-        player2 = UserPlayer.new(piece: 2)
-        board = Board.new(
-            [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
-        )
-        game = GameManager.new(player1: player1, player2: player2, board: board)
+      player1 = UserPlayer.new(piece: 1)
+      player2 = UserPlayer.new(piece: 2)
+      board = Board.new(
+          [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+      )
+      game = GameManager.new(player1: player1, player2: player2, board: board)
 
-        expect(player1.object_id).to eq(game.instance_variable_get(:@current_player).object_id)
+      expect(player1.object_id).to eq(game.instance_variable_get(:@current_player).object_id)
 
-        game.change_to_opponent_turn()
+      game.change_to_opponent_turn()
 
-        expect(player2.object_id).to eq(game.instance_variable_get(:@current_player).object_id)
+      expect(player2.object_id).to eq(game.instance_variable_get(:@current_player).object_id)
 
-        game.change_to_opponent_turn()
+      game.change_to_opponent_turn()
 
-        expect(player1.object_id).to eq(game.instance_variable_get(:@current_player).object_id)
+      expect(player1.object_id).to eq(game.instance_variable_get(:@current_player).object_id)
     end
 
   end

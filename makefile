@@ -38,7 +38,7 @@ all_test:
 
 	echo "CH-RSPEC"
 	cd ch-rspec; docker-compose up -d;
-
+	docker exec -ti code bash -c "rspec spec"
 	cd ch-rspec; docker-compose down;
 
 all_rubocop:
