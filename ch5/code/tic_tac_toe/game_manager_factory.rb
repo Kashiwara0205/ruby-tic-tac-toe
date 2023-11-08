@@ -7,8 +7,8 @@ require_relative "players/ordely_com_player"
 require_relative "players/random_com_player"
 require_relative "board"
 
-# ゲームクラスを作成する
-class GameFactory
+# ゲームマネージャークラスを作成する
+class GameManagerFactory
   class << self
     def create(player1_name, player2_name)
       board = Board.new([

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "game_factory"
+require_relative "game_manager_factory"
 
 # 三目並べの実行クラス
 class TicTacToe
@@ -10,7 +10,7 @@ class TicTacToe
     # 引数: なし
     # 戻り値: なし
     def start
-      game = GameFactory.create
+      game = GameManagerFactory.create
 
       loop do
         game.player_turn
