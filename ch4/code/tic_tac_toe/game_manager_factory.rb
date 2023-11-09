@@ -8,6 +8,9 @@ require_relative "board"
 # ゲームマネージャークラスを作成する
 class GameManagerFactory
   class << self
+    # 概要: GameManagerクラスを作成し返却する
+    # 引数: なし
+    # 戻り値: GameManegerクラスのインスタンス
     def create
       board = Board.new([
                           [OPEN_SLOT, OPEN_SLOT, OPEN_SLOT],

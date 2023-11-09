@@ -25,7 +25,7 @@ class GameManager
     false
   end
 
-  # 概要: 現在のプレイ中のプレイヤーを更新し次のターンに移行する
+  # 概要: 現在プレイ中のプレイヤーと相手プレイヤーを入れ替える
   # 引数: なし
   # 戻り値: なし
   def change_to_opponent_turn
@@ -52,6 +52,9 @@ class GameManager
     @board.print_board
   end
 
+  # 説明: プレイヤーがコマを配置する場所を取得してターンを進める
+  # 引数: なし
+  # 戻り値: なし
   def player_turn
     row, col = @current_player.gets_piece_location(@board.board_state)
     @board.update(row, col, @current_player.piece)
@@ -72,8 +75,8 @@ class GameManager
 
   # 概要: 対戦中の相手プレイヤーを返却する
   # 引数: なし
-  # 戻り値: PLAYER_1の時 => PLAYER_1
-  #         PLAYER_2の時 => PLAYER_2
+  # 戻り値: PLAYER_1の時 => PLAYER_2
+  #        PLAYER_2の時 => PLAYER_1
   def opponent_player(player)
     @player1.equal?(player) ? @player2 : @player1
   end

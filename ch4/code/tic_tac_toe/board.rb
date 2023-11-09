@@ -4,7 +4,7 @@ require_relative "const"
 require_relative "tic_tac_toe_input_error"
 require_relative "tic_tac_toe_validator"
 
-# ゲームの"板"に関する情報を管理する
+# ゲーム板に関する情報を管理する
 class Board
   def initialize(board)
     @board = board

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-# Randomにindexを生成する
+# 乱数生成クラス
 class Randomizer
   class << self
-    def create_random_index
+    def create
       [0, 1, 2].sample
     end
   end

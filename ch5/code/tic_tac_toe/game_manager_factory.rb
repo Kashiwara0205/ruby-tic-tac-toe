@@ -10,6 +10,10 @@ require_relative "board"
 # ゲームマネージャークラスを作成する
 class GameManagerFactory
   class << self
+    # 概要: GameManagerクラスを作成し返却する
+    # 引数: player1_name: plyaer1の名前。数値
+    #      player2_name: plyaer2の名前。数値
+    # 戻り値: GameManegerクラスのインスタンス
     def create(player1_name, player2_name)
       board = Board.new([
                           [OPEN_SLOT, OPEN_SLOT, OPEN_SLOT],
@@ -29,6 +33,9 @@ class GameManagerFactory
 
     private
 
+    # 概要: player_nameに応じてPlayerを作成する
+    # 引数: player_name: plyaerの名前。数値
+    # 戻り値: Playerクラスのインスタンス
     def create_player(player_name, piece)
       return RandomComPlayer.new(piece: piece) if  RANDOM_COM_PLAYER == player_name
       return OrdelyComPlayer.new(piece: piece) if  OEDERLY_COM_PLAYER == player_name

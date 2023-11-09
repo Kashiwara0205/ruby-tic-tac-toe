@@ -8,7 +8,7 @@ class RandomComPlayerTest < Minitest::Test
   # 期待値: 整数の0がrowとcolにそれぞれ返却されること
   def test_gets_piece_location
     player = RandomComPlayer.new(piece: 1)
-    Randomizer.stub(:create_random_index, 0) do
+    Randomizer.stub(:create, 0) do
       row, col = player.gets_piece_location([[0,0,0],[0,0,0],[0,0,0]])
       assert_equal 0, row
       assert_equal 0, col

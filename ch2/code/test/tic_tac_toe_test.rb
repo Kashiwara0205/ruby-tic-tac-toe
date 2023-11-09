@@ -19,7 +19,7 @@ class TicTacToeTest < Minitest::Test
 
   # 概要: 相手プレイヤーの取得メソッドを担保する
   # 期待値: 1を入力した場合は2が返却される
-  #         2を入力した場合は1が返却される
+  #        2を入力した場合は1が返却される
   def test_get_opponent_player
     oppnent = get_opponent_player(1)
     assert_equal 2, oppnent

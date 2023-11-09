@@ -71,7 +71,7 @@ end
 # 説明: コマを配置する場所があるかどうかを判定する
 # 引数: board: ゲーム板, 3 x 3の二次元配列
 # 戻り値: コマを配置する場所がある => true
-#         コマを配置する場所がない => false
+#        コマを配置する場所がない => false
 def can_plase_piece? board
   return board.any?{|row| row.any?{|a| 0 == a} } 
 end

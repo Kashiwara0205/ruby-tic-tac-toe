@@ -42,7 +42,7 @@ end
 # 説明: 対戦中の相手プレイヤーを返却する
 # 引数: player: プレイヤーを表す。1 or 2の数値
 # 戻り値: 1の時 => 2
-#         2の時 => 1
+#        2の時 => 1
 def get_opponent_player(player)
   1 == player ? 2 : 1
 end
