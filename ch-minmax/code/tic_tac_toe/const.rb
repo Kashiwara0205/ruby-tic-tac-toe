@@ -1,0 +1,9 @@
+# frozen_string_literal: true
+
+OPEN_SLOT = 0
+PLAYER1_PIECE = 1
+PLAYER2_PIECE = 2
+
+RANDOM_COM_PLAYER = 0
+OEDERLY_COM_PLAYER = 1
+USER_PLAYER = 2
