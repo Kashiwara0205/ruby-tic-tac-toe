@@ -8,10 +8,6 @@ class BasePlayer
     @piece = piece
   end
 
-  def com?
-    false
-  end
-
   def gets_piece_location(_board_state)
     raise "gets_piece_locationを実装してください"
   end
