@@ -6,8 +6,8 @@ require_relative "errors/com_error"
 require_relative "tic_tac_toe_validator"
 require_relative "players/commnad_player"
 
-# MinMaxが操作するGameManagerクラス
-class MinMaxGameManager < GameManager
+# MiniMaxが操作するGameManagerクラス
+class MiniMaxGameManager < GameManager
   def initialize(board:, starting_order:)
     player1 = CommandPlayer.new(piece: PLAYER1_PIECE)
     player2 = CommandPlayer.new(piece: PLAYER2_PIECE)

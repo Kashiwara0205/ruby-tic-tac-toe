@@ -3,7 +3,7 @@
 require_relative "base_player"
 require_relative "../const"
 require_relative "../errors/com_error"
-require_relative "../min_max_game_manager"
+require_relative "../mini_max_game_manager"
 require_relative "../board"
 
 # MiniMaxルゴリズムを使って打ち手をきめるCOM
@@ -15,7 +15,7 @@ class MiniMaxComPlayer < BasePlayer
 
   def gets_piece_location(game_data_map)
     board = copy_board(game_data_map[:board_state])
-    game = MinMaxGameManager.new(board: board, starting_order: @piece)
+    game = MiniMaxGameManager.new(board: board, starting_order: @piece)
 
     minimax(game, 0)
 
@@ -73,7 +73,7 @@ class MiniMaxComPlayer < BasePlayer
 
   def copy_game(game)
     board = copy_board(game.board_state)
-    MiniMaxComPlayer.new(board: board, starting_order: game.current_player_piece)
+    MiniMaxGameManager.new(board: board, starting_order: game.current_player_piece)
   end
 
   def copy_board(board_state)

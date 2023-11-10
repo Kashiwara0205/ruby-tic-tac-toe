@@ -4,7 +4,7 @@ all_test:
 	cd ch4; docker-compose down;
 	cd ch5; docker-compose down;
 	cd ch-rspec; docker-compose down;
-	cd ch-minmax; docker-compose down;
+	cd ch-minimax; docker-compose down;
 
 	echo "CH2"
 	cd ch2; docker-compose up -d;
@@ -42,8 +42,8 @@ all_test:
 	docker exec -ti code bash -c "rspec spec"
 	cd ch-rspec; docker-compose down;
 
-	echo "CH-MINMAX"
-	cd ch-minmax; docker-compose up -d;
+	echo "CH-minimax"
+	cd ch-minimax; docker-compose up -d;
 	docker exec -ti code bash -c "ruby test/board_test.rb"
 	docker exec -ti code bash -c "ruby test/game_manager_test.rb"
 	docker exec -ti code bash -c "ruby test/players/user_player_test.rb"
@@ -51,11 +51,11 @@ all_test:
 	docker exec -ti code bash -c "ruby test/players/random_com_player_test.rb"
 	docker exec -ti code bash -c "ruby test/tic_tac_toe_validator_test.rb"
 	docker exec -ti code bash -c "rubocop tic_tac_toe"
-	cd ch-minmax; docker-compose down;
+	cd ch-minimax; docker-compose down;
 
-ch_minmax:
-	cd ch-minmax; docker-compose down;
-	cd ch-minmax; docker-compose up -d;
+ch_minimax:
+	cd ch-minimax; docker-compose down;
+	cd ch-minimax; docker-compose up -d;
 	docker exec -ti code bash -c "rubocop tic_tac_toe -a"
 	docker exec -ti code bash -c "ruby test/board_test.rb"
 	docker exec -ti code bash -c "ruby test/game_manager_test.rb"
@@ -64,14 +64,14 @@ ch_minmax:
 	docker exec -ti code bash -c "ruby test/players/random_com_player_test.rb"
 	docker exec -ti code bash -c "ruby test/tic_tac_toe_validator_test.rb"
 	docker exec -ti code bash -c "rubocop tic_tac_toe"
-	cd ch-minmax; docker-compose down;
+	cd ch-minimax; docker-compose down;
 
 all_rubocop:
 	cd ch3; docker-compose down;
 	cd ch4; docker-compose down;
 	cd ch5; docker-compose down;
 	cd ch-rspec; docker-compose down;
-	cd ch-minmax; docker-compose down;
+	cd ch-minimax; docker-compose down;
 
 	cd ch3; docker-compose up -d;
 	docker exec -ti code bash -c "rubocop tic_tac_toe -a"
@@ -89,9 +89,9 @@ all_rubocop:
 	docker exec -ti code bash -c "rubocop tic_tac_toe -a"
 	cd ch-rspec; docker-compose down;
 
-	cd ch-minmax; docker-compose up -d;
+	cd ch-minimax; docker-compose up -d;
 	docker exec -ti code bash -c "rubocop tic_tac_toe -a"
-	cd ch-minmax; docker-compose down;
+	cd ch-minimax; docker-compose down;
 
 in:
 	docker exec -ti code /bin/bash

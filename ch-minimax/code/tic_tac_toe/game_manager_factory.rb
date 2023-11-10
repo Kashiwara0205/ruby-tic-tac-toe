@@ -41,7 +41,7 @@ class GameManagerFactory
     def create_player(player_name, piece)
       return RandomComPlayer.new(piece: piece) if  RANDOM_COM_PLAYER == player_name
       return OrdelyComPlayer.new(piece: piece) if  OEDERLY_COM_PLAYER == player_name
-      return MinMaxComPlayer.new(piece: piece) if MINMAX_PLAYER == player_name
+      return MiniMaxComPlayer.new(piece: piece) if MINIMAX_PLAYER == player_name
 
       UserPlayer.new(piece: piece) if USER_PLAYER == player_name
     end
