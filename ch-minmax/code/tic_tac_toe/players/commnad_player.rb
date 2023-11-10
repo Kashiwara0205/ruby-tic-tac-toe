@@ -6,8 +6,7 @@ require_relative "../errors/com_error"
 
 # MinMaxGameManagerが操作するプレイヤークラス
 class CommandPlayer < BasePlayer
-
-  def initialize :piece
+  def initialize(piece:)
     super(piece: piece)
     @row = 0
     @col = 0
@@ -21,10 +20,10 @@ class CommandPlayer < BasePlayer
     @col = col
   end
 
-  def gets_piece_location(board_state)
+  def gets_piece_location(_board_state)
     [
-        @row,
-        @col
+      @row,
+      @col
     ]
   end
 end

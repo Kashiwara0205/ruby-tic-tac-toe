@@ -32,6 +32,7 @@ class GameManagerFactory
     end
 
     private
+
     # 概要: player_nameに応じてPlayerを作成する
     # 引数: player_name: plyaerの名前。数値
     # 戻り値: Playerクラスのインスタンス
