@@ -6,8 +6,8 @@ require_relative "../errors/com_error"
 require_relative "../min_max_game_manager"
 require_relative "../board"
 
-# MinMaxアルゴリズムを使って打ち手をきめるCOM
-class MinMaxComPlayer < BasePlayer
+# MiniMaxルゴリズムを使って打ち手をきめるCOM
+class MiniMaxComPlayer < BasePlayer
   def initialize(piece:)
     super(piece: piece)
     @best_locations = [0, 0]
@@ -17,7 +17,7 @@ class MinMaxComPlayer < BasePlayer
     board = copy_board(game_data_map[:board_state])
     game = MinMaxGameManager.new(board: board, starting_order: @piece)
 
-    minmax(game, 0)
+    minimax(game, 0)
 
     @locations = []
     @scores = []
@@ -27,7 +27,7 @@ class MinMaxComPlayer < BasePlayer
 
   private
 
-  def minmax(game, depth)
+  def minimax(game, depth)
     return evaluate(game, depth) if !game.continue?
 
     depth += 1
@@ -43,7 +43,7 @@ class MinMaxComPlayer < BasePlayer
         possible_game.player_turn
         possible_game.change_to_opponent_turn
 
-        scores.push(minmax(
+        scores.push(minimax(
                       possible_game,
                       depth
                     ))
@@ -73,7 +73,7 @@ class MinMaxComPlayer < BasePlayer
 
   def copy_game(game)
     board = copy_board(game.board_state)
-    MinMaxGameManager.new(board: board, starting_order: game.current_player_piece)
+    MiniMaxComPlayer.new(board: board, starting_order: game.current_player_piece)
   end
 
   def copy_board(board_state)

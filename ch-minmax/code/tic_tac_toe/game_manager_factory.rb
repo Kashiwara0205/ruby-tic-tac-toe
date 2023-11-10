@@ -5,7 +5,7 @@ require_relative "game_manager"
 require_relative "players/user_player"
 require_relative "players/orderly_com_player"
 require_relative "players/random_com_player"
-require_relative "players/min_max_com_player"
+require_relative "players/mini_max_com_player"
 require_relative "board"
 
 # ゲームマネージャークラスを作成する
