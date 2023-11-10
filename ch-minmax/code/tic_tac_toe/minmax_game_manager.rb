@@ -8,8 +8,10 @@ require_relative "players/commnad_player"
 
 # MinMaxが操作するGameManagerクラス
 class MinMaxGameManager < GameManager
-  def initialize(board:)
-    super(player1: CommandPlayer.new(PLAYER1_PIECE), player2: CommandPlayer.new(PLAYER2_PIECE), board: board)
+  def initialize(board:, starting_order:)
+    player1 = CommandPlayer.new(PLAYER1_PIECE)
+    player2 = CommandPlayer.new(PLAYER2_PIECE)
+    super(player1: player1, player2: player2, board: board, starting_order: starting_order)
   end
 
   def piece?(row, col)
