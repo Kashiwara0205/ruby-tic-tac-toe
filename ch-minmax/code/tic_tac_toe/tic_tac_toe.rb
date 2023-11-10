@@ -11,7 +11,7 @@ class TicTacToe
     # 引数: なし
     # 戻り値: なし
     def start
-      game = GameManagerFactory.create(RANDOM_COM_PLAYER, RANDOM_COM_PLAYER)
+      game = GameManagerFactory.create(RANDOM_COM_PLAYER, MINMAX_PLAYER)
 
       loop do
         game.player_turn

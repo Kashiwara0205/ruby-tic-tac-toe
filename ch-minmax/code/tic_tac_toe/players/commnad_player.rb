@@ -12,11 +12,11 @@ class CommandPlayer < BasePlayer
     @col = 0
   end
 
-  def update_row
+  def update_row(row)
     @row = row
   end
 
-  def update_col
+  def update_col(col)
     @col = col
   end
 

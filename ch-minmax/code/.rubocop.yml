@@ -23,4 +23,4 @@ Metrics/PerceivedComplexity:
   Max: 25
 
 Metrics/MethodLength:
-  Max: 15
+  Max: 20
