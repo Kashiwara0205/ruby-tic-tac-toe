@@ -8,7 +8,7 @@ class BasePlayer
     @piece = piece
   end
 
-  def gets_piece_location(_board_state)
+  def gets_piece_location(_game_data_map)
     raise "gets_piece_locationを実装してください"
   end
 end

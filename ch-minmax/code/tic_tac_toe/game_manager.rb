@@ -56,17 +56,16 @@ class GameManager
   # 引数: なし
   # 戻り値: なし
   def player_turn
-    row, col = @current_player.gets_piece_location(@board.board_state)
+    row, col = @current_player.gets_piece_location({
+                                                     board_state: @board.board_state,
+                                                     current_player: @current_player
+                                                   })
     @board.update(row, col, @current_player.piece)
   rescue TicTacToeInputError => e
-    puts ""
     puts e.message
-    puts ""
     player_turn
   rescue ComError => e
-    puts ""
     puts e.message
-    puts ""
   rescue e
     raise e
   end
