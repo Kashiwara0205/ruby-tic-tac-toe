@@ -12,6 +12,10 @@ class MinMaxGameManager < GameManager
     super(player1: CommandPlayer.new(PLAYER1_PIECE), player2: CommandPlayer.new(PLAYER2_PIECE), board: board)
   end
 
+  def piece?(row, col)
+    @board.piece?(row, col)
+  end
+
   def update_next_piece_location(row, col)
     @current_player.update_row(row)
     @current_player.update_col(col)

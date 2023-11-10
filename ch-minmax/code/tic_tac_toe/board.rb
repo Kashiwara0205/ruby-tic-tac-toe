@@ -44,6 +44,10 @@ class Board
     @board.any? { |row| row.any? { |a| OPEN_SLOT == a } }
   end
 
+  def piece?(row, col)
+    OPEN_SLOT != @board[row][col]
+  end
+
   # 概要: ゲーム板にコマを配置する
   # 引数: row: 入力された更新する行番号
   #      col: 入力された更新する列番号
