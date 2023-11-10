@@ -7,10 +7,10 @@ require_relative "tic_tac_toe_validator"
 
 # ゲームの進行状況を管理する
 class GameManager
-  def initialize(player1:, player2:, board:)
+  def initialize(player1:, player2:, board:, starting_order:)
     @player1 = player1
     @player2 = player2
-    @current_player = @player1
+    @current_player = 1 == starting_order ? @player1 : @player2
     @board = board
   end
 

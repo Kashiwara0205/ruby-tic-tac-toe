@@ -16,7 +16,7 @@ class GameManagerTest < Minitest::Test
       [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
     )
 
-    game = GameManager.new(player1: player1, player2: player2, board: board)
+    game = GameManager.new(player1: player1, player2: player2, board: board, starting_order: 1)
 
     assert_equal player1.object_id, game.instance_variable_get(:@current_player).object_id
 
@@ -42,7 +42,7 @@ class GameManagerTest < Minitest::Test
     player1.expect(:gets_piece_location, [2, 1], [ board.board_state ])
     player1.expect(:piece, 1)
 
-    game = GameManager.new(player1: player1, player2: player2, board: board)
+    game = GameManager.new(player1: player1, player2: player2, board: board, starting_order: 1)
 
     game.player_turn()
     assert_equal 1, board.board_state[2][1]
@@ -64,7 +64,7 @@ class GameManagerTest < Minitest::Test
       [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
     )
 
-    game = GameManager.new(player1: player1, player2: player2, board: board)
+    game = GameManager.new(player1: player1, player2: player2, board: board, starting_order: 1)
     assert game.continue?()
     
     # 継続可能
@@ -75,7 +75,7 @@ class GameManagerTest < Minitest::Test
       [[1, 2, 0], [0, 0, 0], [0, 0, 0]]
     )
 
-    game = GameManager.new(player1: player1, player2: player2, board: board)
+    game = GameManager.new(player1: player1, player2: player2, board: board, starting_order: 1)
     assert game.continue?()
 
     # 勝利した
@@ -86,7 +86,7 @@ class GameManagerTest < Minitest::Test
       [[1, 1, 1], [2, 2, 0], [0, 0, 0]]
     )
 
-    game = GameManager.new(player1: player1, player2: player2, board: board)
+    game = GameManager.new(player1: player1, player2: player2, board: board, starting_order: 1)
     assert_equal false, game.continue?()
 
 
@@ -98,7 +98,7 @@ class GameManagerTest < Minitest::Test
       [[1, 1, 2], [2, 2, 1], [1, 2, 1]]
     )
 
-    game = GameManager.new(player1: player1, player2: player2, board: board)
+    game = GameManager.new(player1: player1, player2: player2, board: board, starting_order: 1)
     assert_equal false, game.continue?()
   end
 end

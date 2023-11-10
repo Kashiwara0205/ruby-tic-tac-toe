@@ -27,7 +27,8 @@ class GameManagerFactory
       GameManager.new(
         player1: player1,
         player2: player2,
-        board: board
+        board: board,
+        starting_order: 1
       )
     end
 
