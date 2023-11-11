@@ -19,9 +19,6 @@ class MiniMaxComPlayer < BasePlayer
 
     minimax(game, 0)
 
-    @locations = []
-    @scores = []
-
     @best_locations
   end
 
