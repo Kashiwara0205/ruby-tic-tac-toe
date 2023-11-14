@@ -87,28 +87,28 @@ class TicTacToeTest < Minitest::Test
     assert_equal false, can_plase_piece?(board)
   end 
 
-  # 概要:  ゲームの継続条件を担保する
-  # 期待値: ゲームが進行可能な状態な時にtrueが返却される
-  #         以下の条件時にfalseが返却される
+  # 概要:  ゲームの終了条件を担保する
+  # 期待値: ゲームが進行可能な状態な時にfalseが返却される
+  #         以下の条件時にtrueが返却される
   #         - プレイヤーが勝利した
   #         - 引き分けになった
-  def test_continue?
+  def test_over?
     player = 1
 
     board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
-    assert continue?(player, board)
+    assert_equal false, over?(player, board)
 
     board = [[1, 2, 0], [0, 0, 0], [0, 0, 0]]
-    assert continue?(player, board)
+    assert_equal false, over?(player, board)
 
     board = [[1, 1, 1], [2, 2, 2], [0, 0, 0]]
-    assert_equal false, continue?(player, board)
+    assert over?(player, board)
 
     board = [[1, 0, 2], [1, 1, 0], [0, 0, 2]]
-    assert_equal true, continue?(player, board)
+    assert_equal false, over?(player, board)
 
     board = [[1, 1, 2], [2, 2, 1], [1, 2, 1]]
-    assert_equal false, continue?(player, board)
+    assert over?(player, board)
   end
 
   # 概要:  コマを置く場所を取得した時に整数に変換されることを担保する

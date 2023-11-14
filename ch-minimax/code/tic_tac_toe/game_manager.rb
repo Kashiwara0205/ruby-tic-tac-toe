@@ -14,15 +14,15 @@ class GameManager
     @board = board
   end
 
-  # 概要: ゲームが続いているかどうかを返却する
+  # 概要: ゲームが終了しているかどうかを返却する
   # 引数: なし
-  # 戻り値: ゲームが続いている場合 => true
-  #        ゲームが終わった場合 => false
-  def continue?
-    return false if @board.win?(@current_player.piece)
-    return true if @board.can_plase_piece?
+  # 戻り値: ゲームが続いている場合 => false
+  #        ゲームが終わった場合 => true
+  def over?
+    return true if @board.win?(@current_player.piece)
+    return false if @board.can_plase_piece?
 
-    false
+    true
   end
 
   # 概要: 現在プレイ中のプレイヤーと相手プレイヤーを入れ替える

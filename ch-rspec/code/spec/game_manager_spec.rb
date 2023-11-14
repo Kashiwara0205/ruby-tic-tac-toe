@@ -50,14 +50,14 @@ RSpec.describe "ゲームの進行クラスをテストする" do
         [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
       )
       game = GameManager.new(player1: player1, player2: player2, board: board)
-      expect(game.continue?()).to eq(true)
+      expect(game.over?()).to eq(false)
 
 
       board = Board.new(
         [[1, 2, 0], [0, 0, 0], [0, 0, 0]]
       )
       game = GameManager.new(player1: player1, player2: player2, board: board)
-      expect(game.continue?()).to eq(true)
+      expect(game.over?()).to eq(false)
     end
 
     it "自ターン完了後に3目揃っていた場合終了となる" do 
@@ -67,7 +67,7 @@ RSpec.describe "ゲームの進行クラスをテストする" do
         [[1, 1, 1], [2, 2, 0], [0, 0, 0]]
       )
       game = GameManager.new(player1: player1, player2: player2, board: board)
-      expect(game.continue?()).to eq(false)
+      expect(game.over?()).to eq(true)
     end
 
     it "引き分けの場合終了となる" do 
@@ -77,7 +77,7 @@ RSpec.describe "ゲームの進行クラスをテストする" do
         [[1, 1, 2], [2, 2, 1], [1, 2, 1]]
       )
       game = GameManager.new(player1: player1, player2: player2, board: board)
-      expect(game.continue?()).to eq(false)
+      expect(game.over?()).to eq(true)
     end
   end
 end
