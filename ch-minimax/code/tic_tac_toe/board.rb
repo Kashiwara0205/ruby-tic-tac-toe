@@ -10,6 +10,9 @@ class Board
     @board = board
   end
 
+  # 概要: ゲーム板の状態を返却する
+  # 引数:   なし
+  # 戻り値: ゲーム板の状態
   def board_state
     @board
   end
@@ -39,11 +42,16 @@ class Board
   # 概要: コマを配置する場所があるかどうかを判定する
   # 引数: なし
   # 戻り値: コマを配置する場所がある => true
-  #         コマを配置する場所がない => false
+  #        コマを配置する場所がない => false
   def can_plase_piece?
     @board.any? { |row| row.any? { |a| OPEN_SLOT == a } }
   end
 
+  # 概要: その場所にコマがあるかどうかを返却する
+  # 引数: row: 行番号
+  #       col: 列番号
+  # 戻り値: コマがある => true
+  #        コマがなし => false
   def piece?(row, col)
     OPEN_SLOT != @board[row][col]
   end
