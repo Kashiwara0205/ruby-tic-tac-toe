@@ -5,6 +5,7 @@ require_relative "game_manager"
 require_relative "players/user_player"
 require_relative "players/orderly_com_player"
 require_relative "players/random_com_player"
+require_relative "players/mini_max_com_player"
 require_relative "board"
 
 # ゲームマネージャークラスを作成する
@@ -27,7 +28,8 @@ class GameManagerFactory
       GameManager.new(
         player1: player1,
         player2: player2,
-        board: board
+        board: board,
+        starting_order: 1
       )
     end
 
@@ -39,6 +41,7 @@ class GameManagerFactory
     def create_player(player_name, piece)
       return RandomComPlayer.new(piece: piece) if  RANDOM_COM_PLAYER == player_name
       return OrdelyComPlayer.new(piece: piece) if  OEDERLY_COM_PLAYER == player_name
+      return MiniMaxComPlayer.new(piece: piece) if MINIMAX_PLAYER == player_name
 
       UserPlayer.new(piece: piece) if USER_PLAYER == player_name
     end
