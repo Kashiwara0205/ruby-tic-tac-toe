@@ -9,9 +9,7 @@ class RandomComPlayerTest < Minitest::Test
   def test_gets_piece_location
     player = RandomComPlayer.new(piece: 1)
     Randomizer.stub(:create, 0) do
-      row, col = player.gets_piece_location({
-        board_state: [[0,0,0],[0,0,0],[0,0,0]]
-      })
+      row, col = player.gets_piece_location([[0,0,0],[0,0,0],[0,0,0]])
       assert_equal 0, row
       assert_equal 0, col
     end
@@ -22,9 +20,7 @@ class RandomComPlayerTest < Minitest::Test
   def test_error_when_no_open_slot
     player = RandomComPlayer.new(piece: 1)
     e = assert_raises ComError do
-      player.gets_piece_location({
-        board_state: [[1,1,1],[2,2,2],[2,1,1]]
-      })
+      player.gets_piece_location( [[1,1,1],[2,2,2],[2,1,1]])
     end
 
     assert_equal 'RandomComPlayerクラスで配置場所が決まりませんでした', e.message

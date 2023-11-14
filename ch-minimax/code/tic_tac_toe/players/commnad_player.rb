@@ -27,9 +27,9 @@ class CommandPlayer < BasePlayer
   end
 
   # 概要: 設定されたrowとcolを返却する
-  # 引数: _board_state: ゲーム板の状態
+  # 引数: board_state: ゲーム板の状態
   # 戻り値: 行と列の情報を配列に格納して返却する => [1, 1]
-  def gets_piece_location(_game_data_map)
+  def gets_piece_location(_board_state)
     [
       @row,
       @col

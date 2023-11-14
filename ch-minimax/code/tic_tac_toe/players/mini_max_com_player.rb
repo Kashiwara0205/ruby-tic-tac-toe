@@ -14,10 +14,10 @@ class MiniMaxComPlayer < BasePlayer
   end
 
   # 概要: MiniMaxアルゴリズムを使用して打ち手を決定する
-  # 引数: game_data_map: ゲーム関連の情報
+  # 引数: board_state: ゲーム板の状態
   # 戻り値: 行と列の情報を配列に格納して返却する => [1, 1]
-  def gets_piece_location(game_data_map)
-    board = copy_board(game_data_map[:board_state])
+  def gets_piece_location(board_state)
+    board = copy_board(board_state)
     game = MiniMaxGameManager.new(board: board, starting_order: @piece)
 
     minimax(game, 0)

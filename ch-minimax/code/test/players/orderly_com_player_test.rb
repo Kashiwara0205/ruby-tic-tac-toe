@@ -7,9 +7,7 @@ class OrderlyComPlayerTest < Minitest::Test
   # 期待値: 整数の0がrowとcolにそれぞれ返却されること
   def test_gets_piece_location
     player = OrdelyComPlayer.new(piece: 1)
-    row, col = player.gets_piece_location({
-      board_state: [[0,0,0],[0,0,0],[0,0,0]]
-    })
+    row, col = player.gets_piece_location([[0,0,0],[0,0,0],[0,0,0]])
     assert_equal 0, row
     assert_equal 0, col
   end
@@ -19,9 +17,7 @@ class OrderlyComPlayerTest < Minitest::Test
   def test_error_when_no_open_slot
     player = OrdelyComPlayer.new(piece: 1)
     e = assert_raises ComError do
-      player.gets_piece_location({
-        board_state: [[1,1,1],[2,2,2],[2,1,1]]
-      })
+      player.gets_piece_location( [[1,1,1],[2,2,2],[2,1,1]])
     end
 
     assert_equal 'OrderlyComPlayerクラスで配置場所が決まりませんでした', e.message

@@ -39,10 +39,7 @@ class GameManagerTest < Minitest::Test
       [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
     )
 
-    player1.expect(:gets_piece_location, [2, 1], [{
-      board_state: board.board_state,
-      current_player: player1
-    } ])
+    player1.expect(:gets_piece_location, [2, 1], [board.board_state ])
 
     player1.expect(:piece, 1)
 
