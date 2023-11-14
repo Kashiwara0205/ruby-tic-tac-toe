@@ -49,13 +49,12 @@ class GameManagerTest < Minitest::Test
     player1.verify
   end
 
-  # 概要:  ゲームの継続条件を担保する
-  # 期待値: ゲームが進行可能な状態な時にtrueが返却される
-  #         以下の条件時にfalseが返却される
+  # 概要:  ゲームの終了条件を担保する
+  # 期待値: ゲームが進行可能な状態な時にfalseが返却される
+  #         以下の条件時にtrueが返却される
   #         - プレイヤーが勝利した
   #         - 引き分けになった
-  def test_continue?
-    # 継続可能
+  def test_over?
     player1 = Player.new(piece: 1)
     player2 = Player.new(piece: 2)
     
@@ -64,9 +63,8 @@ class GameManagerTest < Minitest::Test
     )
 
     game = GameManager.new(player1: player1, player2: player2, board: board)
-    assert game.continue?()
+    assert_equal false, game.over?()
     
-    # 継続可能
     player1 = Player.new(piece: 1)
     player2 = Player.new(piece: 2)
 
@@ -75,9 +73,8 @@ class GameManagerTest < Minitest::Test
     )
 
     game = GameManager.new(player1: player1, player2: player2, board: board)
-    assert game.continue?()
+    assert_equal false, game.over?()
 
-    # 勝利した
     player1 = Player.new(piece: 1)
     player2 = Player.new(piece: 2)
 
@@ -86,10 +83,8 @@ class GameManagerTest < Minitest::Test
     )
 
     game = GameManager.new(player1: player1, player2: player2, board: board)
-    assert_equal false, game.continue?()
+    assert game.over?()
 
-
-    # 引き分けになった
     player1 = Player.new(piece: 1)
     player2 = Player.new(piece: 2)
 
@@ -98,6 +93,6 @@ class GameManagerTest < Minitest::Test
     )
 
     game = GameManager.new(player1: player1, player2: player2, board: board)
-    assert_equal false, game.continue?()
+    assert game.over?()
   end
 end

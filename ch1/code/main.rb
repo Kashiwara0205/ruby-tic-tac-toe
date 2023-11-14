@@ -76,16 +76,16 @@ def can_plase_piece? board
   return board.any?{|row| row.any?{|a| 0 == a} } 
 end
 
-# 説明: ゲームが続いているかどうかを返却する
+# 説明: ゲームが終了しているかどうかを返却する
 # 引数: player: プレイヤーを表す。1 or 2の数値
 #       board: ゲーム板, 3 x 3の二次元配列
-# 戻り値: ゲームが続いている場合 => true
-#        ゲームが終わった場合 => falsetest/tic_tac_toe_test.rb
-def continue? player, board
-  return false if win?(player, board)
-  return true if can_plase_piece?(board)
+# 戻り値: ゲームが続いている場合 => false
+#        ゲームが終わった場合 => true
+def over? player, board
+  return true if win?(player, board)
+  return false if can_plase_piece?(board)
 
-  return false
+  return true
 end
 
 # 説明: ゲームの結果をコンソールに出力する
@@ -111,7 +111,7 @@ loop do
 
   print_board(board)
 
-  break if !continue?(player, board)
+  break if over?(player, board)
 
   player = get_opponent_player(player)
 end

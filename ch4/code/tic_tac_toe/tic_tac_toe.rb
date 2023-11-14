@@ -15,7 +15,7 @@ class TicTacToe
       loop do
         game.player_turn
         game.print_board
-        break if !game.continue?
+        break if game.over?
 
         game.change_to_opponent_turn
       end

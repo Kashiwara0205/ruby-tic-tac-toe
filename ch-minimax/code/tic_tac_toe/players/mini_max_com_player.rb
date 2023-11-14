@@ -32,7 +32,7 @@ class MiniMaxComPlayer < BasePlayer
   #      depth: ゲーム木の深さ
   # 戻り値: 評価されたスコア
   def minimax(game, depth)
-    return evaluate(game, depth) if !game.continue?
+    return evaluate(game, depth) if game.over?
 
     depth += 1
     scores = []
